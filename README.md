@@ -3,3 +3,4 @@ V tomto projekte by som sa chcel zamerať na čipový systém v zoologickej záh
 - [x] prvy commit
 - [ ] prvy pokus o UI
 - [ ] pracovanie na pouzivatelskej casti 
+- [x] upravenie UML podla konzultacii
