@@ -2,15 +2,30 @@ package Help;
 
 import java.util.ArrayList;
 import Models.*;
+import java.io.*;
 
 public class UserDB {
     public static ArrayList<User> users = new ArrayList<User>();
 
-    public void loadDB(){   //deserialize
-
+    public static void loadDB(){   //deserialize arraylist
+        try {
+            FileInputStream fileIn = new FileInputStream("UserBackup");
+            ObjectInputStream ObjectIn = new ObjectInputStream(fileIn);
+            users = (ArrayList) ObjectIn.readObject();
+            ObjectIn.close();
+            fileIn.close();
+        }
+        catch (IOException ioe) {
+            System.out.println("File not found");
+            UserDB.fillDB();
+        }
+        catch (ClassNotFoundException c) {
+            System.out.println("Class not found");
+            return;
+        }
     }
 
-    public void fillDB(){   //naplnenie databazy prototypmi ak neexistuje zaloha
+    public static void fillDB(){   //naplnenie databazy prototypmi ak neexistuje zaloha
         users.add(new Dieta(10001, "Janko"));
         users.add(new Dospeli(10002, "Marian"));
         users.add(new Senior(10003, "Imrich"));
@@ -20,7 +35,17 @@ public class UserDB {
 
     }
 
-    public void saveDB(){   //serialize
-
+    public static void saveDB(){   //serialize arraylist
+        if (users != null) {
+            try {
+                FileOutputStream fileOut = new FileOutputStream("UserBackup");
+                ObjectOutputStream ObjectOut = new ObjectOutputStream(fileOut);
+                ObjectOut.writeObject(users);
+                ObjectOut.close();
+                fileOut.close();
+            } catch (IOException ioe) {
+                System.out.println("data neboli backupnute");
+            }
+        }
     }
 }

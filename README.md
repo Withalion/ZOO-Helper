@@ -6,5 +6,5 @@ V tomto projekte by som sa chcel zamerať na čipový systém v zoologickej záh
 - [x] upravenie UML podla konzultacii
 # 7. týždeň
 - [x] pridanie defaultneho naplnenia usermi
-- [ ] serializacia a deserializacia uzivatelov
-- [ ] login s polymorfiou
+- [x] serializacia a deserializacia uzivatelov
+- [x] login s polymorfiou

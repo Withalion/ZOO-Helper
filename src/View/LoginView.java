@@ -63,6 +63,7 @@ public class LoginView extends Application {
         primaryStage.setScene(new Scene(pane, 500, 500));
         primaryStage.show();
         loginController.PairController(this);
+        loginController.loadUsers();
 
         loginBT.setOnAction(e ->{
             loginController.loginUser(User.getText());
@@ -74,7 +75,7 @@ public class LoginView extends Application {
     }
 
     public void goodLogin(String name){
-        welcome.setText("Welcome" + name);
+        welcome.setText("Welcome " + name);
         welcome.setLayoutX(20);
         wrong.setVisible(false);
         loginBT.setVisible(false);
@@ -88,6 +89,7 @@ public class LoginView extends Application {
     public void logout(){
         welcome.setLayoutX(150);
         welcome.setLayoutY(100);
+        welcome.setText("Welcome");
         welcome.setFont(new Font("times new roman", 50));
 
         UserID.setLayoutX(100);
