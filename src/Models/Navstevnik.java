@@ -1,4 +1,5 @@
 package Models;
 
-public class Navstevnik {
+public class Navstevnik extends User{
+
 }
