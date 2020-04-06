@@ -16,12 +16,11 @@ public class UserDB {
             fileIn.close();
         }
         catch (IOException ioe) {
-            System.out.println("File not found");
+            System.out.println("UserFile not found");
             UserDB.fillDB();
         }
         catch (ClassNotFoundException c) {
             System.out.println("Class not found");
-            return;
         }
     }
 
@@ -31,7 +30,7 @@ public class UserDB {
         users.add(new Senior(10003, "Imrich"));
         users.add(new Pokladnik(50001, "Marienka"));
         users.add(new Manazer(90001, "Alfonz"));
-        users.add(new Osetrovatel(50002, "Edo"));
+        users.add(new Osetrovatel(50002, "Edo", false,true, false,true,false,true,false,false));
 
     }
 
@@ -44,7 +43,7 @@ public class UserDB {
                 ObjectOut.close();
                 fileOut.close();
             } catch (IOException ioe) {
-                System.out.println("data neboli backupnute");
+                System.out.println("UserData neboli backupnute");
             }
         }
     }

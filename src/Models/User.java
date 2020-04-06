@@ -1,10 +1,11 @@
 package Models;
 
+import AnimalPavilons.AnimalPavilon;
 import Controllers.LoginController;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class User implements Serializable, Entry {
     private Integer ID;
     private String Name;
     public transient LoginController loginController;
@@ -28,5 +29,10 @@ public class User implements Serializable {
         this.loginController = LoginController.getInstance();
         this.polyLogin();
         return;
+    }
+
+    @Override
+    public void TryEnter(AnimalPavilon entrySpace) {
+        System.out.println("Cannot Entry");
     }
 }

@@ -9,6 +9,6 @@ V tomto projekte by som sa chcel zamerať na čipový systém v zoologickej záh
 - [x] serializacia a deserializacia uzivatelov
 - [x] login s polymorfiou
 # 8. týždeň
-- [ ]
+- [x] rozpracovanie štruktúry projektu
 - [ ]
 - [ ]

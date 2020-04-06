@@ -4,13 +4,14 @@ import View.NavstevnikView;
 import View.ZamestnanecView;
 import View.*;
 import Models.User;
-import Help.UserDB;
+import Help.*;
 import javafx.stage.Stage;
 
 
 public class LoginController {
     public LoginView loginView = null;
     private static LoginController instance = null;
+    public User pickedUser = null;
     private LoginController(){
 
     }
@@ -25,8 +26,8 @@ public class LoginController {
     public void loadUsers(){
         UserDB.loadDB();
     }
+    public void loadAnimals(){AnimalDB.loadDB();}
     public void loginUser(String userID){
-       User pickedUser = null;
        for (int i = 0; i <UserDB.users.size(); i++){
            try {                                             //exception ak by zadane ID bola blbost
                if (UserDB.users.get(i).getID().equals(Integer.parseInt(userID))) {
@@ -49,6 +50,7 @@ public class LoginController {
     }
     public void logoutUser(){
        UserDB.saveDB();
+       AnimalDB.saveDB();
        this.loginView.logout();
     }
 }
