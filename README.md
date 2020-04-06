@@ -10,5 +10,5 @@ V tomto projekte by som sa chcel zamerať na čipový systém v zoologickej záh
 - [x] login s polymorfiou
 # 8. týždeň
 - [x] rozpracovanie štruktúry projektu
-- [ ]
+- [ ] pridanie interface Entry do vybehu pre navstevnikov
 - [ ]
