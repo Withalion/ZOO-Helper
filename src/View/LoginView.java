@@ -10,10 +10,11 @@ import javafx.scene.layout.Pane;
 import Controllers.LoginController;
 
 public class LoginView extends Application {
-    private LoginController loginController = new LoginController();
+    private LoginController loginController = LoginController.getInstance();
     private Label welcome = new Label("Welcome");
     private Label UserID = new Label("UserID");
     private Label wrong = new Label("User not found!");
+    private Label Name = new Label("Meno");
     private TextField User = new TextField();
     public Button loginBT = new Button("Log In");
     public Button logoutBT = new Button("Log Out");
@@ -25,6 +26,11 @@ public class LoginView extends Application {
         welcome.setLayoutX(150);
         welcome.setLayoutY(100);
         welcome.setFont(new Font("times new roman", 50));
+
+        Name.setLayoutX(150);
+        Name.setLayoutY(150);
+        Name.setFont(new Font("times new roman", 50));
+        Name.setVisible(false);
 
         UserID.setLayoutX(100);
         UserID.setLayoutY(260);
@@ -59,6 +65,7 @@ public class LoginView extends Application {
         pane.getChildren().add(loginBT);
         pane.getChildren().add(logoutBT);
         pane.getChildren().add(wrong);
+        pane.getChildren().add(Name);
 
         primaryStage.setScene(new Scene(pane, 500, 500));
         primaryStage.show();
@@ -75,8 +82,8 @@ public class LoginView extends Application {
     }
 
     public void goodLogin(String name){
-        welcome.setText("Welcome " + name);
-        welcome.setLayoutX(20);
+        Name.setText(name);
+        Name.setVisible(true);
         wrong.setVisible(false);
         loginBT.setVisible(false);
         logoutBT.setVisible(true);
@@ -91,6 +98,11 @@ public class LoginView extends Application {
         welcome.setLayoutY(100);
         welcome.setText("Welcome");
         welcome.setFont(new Font("times new roman", 50));
+
+        Name.setLayoutX(150);
+        Name.setLayoutY(150);
+        Name.setFont(new Font("times new roman", 50));
+        Name.setVisible(false);
 
         UserID.setLayoutX(100);
         UserID.setLayoutY(260);

@@ -2,9 +2,13 @@ V tomto projekte by som sa chcel zamerať na čipový systém v zoologickej záh
 # 6. týždeň
 - [x] prvy commit
 - [x] prvy pokus o UI
-- [ ] pracovanie na pouzivatelskej casti 
+- [x] pracovanie na pouzivatelskej casti 
 - [x] upravenie UML podla konzultacii
 # 7. týždeň
 - [x] pridanie defaultneho naplnenia usermi
 - [x] serializacia a deserializacia uzivatelov
 - [x] login s polymorfiou
+# 8. týždeň
+- [ ]
+- [ ]
+- [ ]

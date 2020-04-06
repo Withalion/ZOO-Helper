@@ -1,13 +1,24 @@
 package Controllers;
 
+import View.NavstevnikView;
+import View.ZamestnanecView;
 import View.*;
 import Models.User;
 import Help.UserDB;
+import javafx.stage.Stage;
 
 
 public class LoginController {
     public LoginView loginView = null;
+    private static LoginController instance = null;
+    private LoginController(){
 
+    }
+
+    public static LoginController getInstance(){
+        if (instance == null)instance = new LoginController();
+        return instance;
+    }
     public void PairController(LoginView lgView){
         this.loginView = lgView;
     }
@@ -30,7 +41,12 @@ public class LoginController {
        }
        loginView.badLogin();
     }
-
+    public void VisitorOV(){
+        new NavstevnikView().start(new Stage());
+    }
+    public void EmployeeOV(){
+        new ZamestnanecView().start(new Stage());
+    }
     public void logoutUser(){
        UserDB.saveDB();
        this.loginView.logout();
