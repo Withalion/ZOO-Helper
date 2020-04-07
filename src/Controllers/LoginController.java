@@ -27,6 +27,7 @@ public class LoginController {
         UserDB.loadDB();
     }
     public void loadAnimals(){AnimalDB.loadDB();}
+    public void loadPavilons(){PavilonDB.loadDB();}
     public void loginUser(String userID){
        for (int i = 0; i <UserDB.users.size(); i++){
            try {                                             //exception ak by zadane ID bola blbost
@@ -51,6 +52,7 @@ public class LoginController {
     public void logoutUser(){
        UserDB.saveDB();
        AnimalDB.saveDB();
+       PavilonDB.saveDB();
        this.loginView.logout();
     }
 }

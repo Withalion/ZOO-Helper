@@ -2,10 +2,13 @@ package Models;
 
 import AnimalPavilons.AnimalPavilon;
 import Animals.Animal;
+import Controllers.ZamestnanecController;
+
 import java.util.ArrayList;
 
 public class Osetrovatel extends Zamestnanec implements Feedable, Showable{
     private ArrayList<Animal> animals = new ArrayList<>();
+    private transient ZamestnanecController ZCinstance = ZamestnanecController.getInstance();
     private boolean Amphibian;
     private boolean Bird;
     private boolean Cat;
@@ -30,7 +33,12 @@ public class Osetrovatel extends Zamestnanec implements Feedable, Showable{
 
     @Override
     public void TryEnter(AnimalPavilon entrySpace) {
-
+        if (entrySpace == null ) ZCinstance.EntranceClosed();
+        else{
+            switch(entrySpace.getClass().getSimpleName()){
+                
+            }
+        }
     }
 
     public ArrayList getArraylist(){

@@ -22,4 +22,10 @@ public class ZamestnanecView extends Application{
         primaryStage.show();
         employeeController.PairEController(this);
     }
+    public void openDoor(){
+
+    }
+    public void lockDoor(){
+
+    }
 }

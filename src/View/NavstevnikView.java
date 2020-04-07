@@ -1,9 +1,10 @@
 package View;
 
 import AnimalPavilons.AnimalPavilon;
-import Controllers.LoginController;
 import Controllers.NavstevnikController;
+import Help.PavilonDB;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -23,7 +24,7 @@ public class NavstevnikView extends Application {
     public Label action = new Label("Action to do: ");
     public ComboBox<String> actionChoice= new ComboBox<>();
     public Label pavilon = new Label("Choose Pavilon: ");
-    public ComboBox<AnimalPavilon> pavilonChoice = new ComboBox<>();
+    public ComboBox<AnimalPavilon> pavilonChoice = new ComboBox<AnimalPavilon>(FXCollections.observableList(PavilonDB.pavilons));
 
     public void sceneBuilder(){
         EntryButton.setLayoutX(175);
@@ -48,7 +49,7 @@ public class NavstevnikView extends Application {
         action.setLayoutY(50);
         action.setFont(new Font("times new roman", 30));
 
-        actionChoice.getItems().add("Enter animal Pavilon");
+        actionChoice.getItems().addAll("Enter animal Pavilon", "Watch show", "Buy Icecream", "Go home");
         actionChoice.setLayoutX(220);
         actionChoice.setLayoutY(50);
         actionChoice.setMinSize(70,40);
@@ -58,7 +59,7 @@ public class NavstevnikView extends Application {
         pavilon.setFont(new Font("times new roman", 30));
         pavilon.setVisible(true);
 
-        pavilonChoice.getItems().addAll();
+
         pavilonChoice.setLayoutX(220);
         pavilonChoice.setLayoutY(150);
         pavilonChoice.setMinSize(70,40);
@@ -79,7 +80,7 @@ public class NavstevnikView extends Application {
         visitorController.PairVController(this);
 
         EntryButton.setOnAction(e ->{
-           // visitorController.TryEnter();
+            visitorController.TryEnter(pavilonChoice.getValue());
         });
     }
     public void openDoor(){

@@ -19,7 +19,7 @@ public class AnimalDB {
         }
         catch (IOException ioe) {
             System.out.println("AnimalFile not found");
-            UserDB.fillDB();
+            AnimalDB.fillDB();
         }
         catch (ClassNotFoundException c) {
             System.out.println("Class not found");

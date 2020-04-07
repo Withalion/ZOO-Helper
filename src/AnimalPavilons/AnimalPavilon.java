@@ -1,11 +1,12 @@
 package AnimalPavilons;
 
-import Models.Entry;
-import Models.Showable;
+import Animals.Animal;
+import java.util.ArrayList;
 
-public class AnimalPavilon implements Entry, Showable {
-    @Override
-    public void TryEnter(AnimalPavilon entrySpace) {
 
-    }
+public class AnimalPavilon {
+    public boolean occupied;
+    public ArrayList<Animal> occupants = new ArrayList<Animal>();
+    public String test = "testik";
+
 }

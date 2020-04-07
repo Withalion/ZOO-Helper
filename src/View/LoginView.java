@@ -72,6 +72,7 @@ public class LoginView extends Application {
         loginController.PairController(this);
         loginController.loadUsers();
         loginController.loadAnimals();
+        loginController.loadPavilons();
 
         loginBT.setOnAction(e ->{
             loginController.loginUser(User.getText());

@@ -11,7 +11,7 @@ public class Navstevnik extends User{
 
     @Override
     public void TryEnter(AnimalPavilon entrySpace) {
-        ButterflyGarden helpGarden = new ButterflyGarden();
+        ButterflyGarden helpGarden = new ButterflyGarden(null);
         if (entrySpace == null || helpGarden.getClass() != entrySpace.getClass()) NCinstance.EntranceClosed();
         else NCinstance.EntranceOpen();
         helpGarden = null;
