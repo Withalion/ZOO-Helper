@@ -29,6 +29,10 @@ public class Osetrovatel extends Zamestnanec implements Feedable, Showable{
         this.setReptile(oReptile);
     }
 
+    public void FeedME(){
+
+    }
+
     @Override
     public boolean TryEnter(AnimalPavilon entrySpace) {
         if (entrySpace == null ) return false;
