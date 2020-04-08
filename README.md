@@ -11,5 +11,6 @@ V tomto projekte by som sa chcel zamerať na čipový systém v zoologickej záh
 - [x] login s polymorfiou
 # 8. týždeň
 - [x] rozpracovanie štruktúry projektu
-- [ ] pridanie interface Entry do vybehu pre navstevnikov
-- [ ]
+- [x] pridanie interface Entry do vybehu pre navstevnikov aj s UI podporou
+- [x] implementovanie Entry pri osetrovateloch
+- [ ] implementovanie Feedable pre zvierata

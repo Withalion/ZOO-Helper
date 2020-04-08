@@ -19,12 +19,7 @@ public class NavstevnikController {
         this.visitorView = vView;
     }
     public void TryEnter(AnimalPavilon entrySpace){
-        lgInstance.pickedUser.TryEnter(entrySpace);
-    }
-    public void EntranceOpen(){
-        visitorView.openDoor();
-    }
-    public void EntranceClosed(){
-        visitorView.lockDoor();
+        if (lgInstance.pickedUser.TryEnter(entrySpace)) visitorView.openDoor();
+        else visitorView.lockDoor();
     }
 }

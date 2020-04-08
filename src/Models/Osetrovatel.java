@@ -2,13 +2,11 @@ package Models;
 
 import AnimalPavilons.AnimalPavilon;
 import Animals.Animal;
-import Controllers.ZamestnanecController;
 
 import java.util.ArrayList;
 
 public class Osetrovatel extends Zamestnanec implements Feedable, Showable{
     private ArrayList<Animal> animals = new ArrayList<>();
-    private transient ZamestnanecController ZCinstance = ZamestnanecController.getInstance();
     private boolean Amphibian;
     private boolean Bird;
     private boolean Cat;
@@ -32,11 +30,44 @@ public class Osetrovatel extends Zamestnanec implements Feedable, Showable{
     }
 
     @Override
-    public void TryEnter(AnimalPavilon entrySpace) {
-        if (entrySpace == null ) ZCinstance.EntranceClosed();
+    public boolean TryEnter(AnimalPavilon entrySpace) {
+        if (entrySpace == null ) return false;
+        if (entrySpace.occupied == false) return true;
         else{
-            switch(entrySpace.getClass().getSimpleName()){
-                
+            switch(entrySpace.occupants.get(0).getClass().getSimpleName()){
+                case "Amphibian":{
+                    if (Amphibian == true)return true;
+                    else return false;
+                }
+                case "Bird":{
+                    if (Bird == true)return true;
+                    else return false;
+                }
+                case "Cat":{
+                    if (Cat == true)return true;
+                    else return false;
+                }
+                case "Fish":{
+                    if (Fish == true)return true;
+                    else return false;
+                }
+                case "Invertebrate":{
+                    if (Invertebrate == true)return true;
+                    else return false;
+                }
+                case "Mammal":{
+                    if (Mammal == true)return true;
+                    else return false;
+                }
+                case "Primate":{
+                    if (Primate == true)return true;
+                    else return false;
+                }
+                case "Reptile":{
+                    if (Reptile == true)return true;
+                    else return false;
+                }
+                default: return false;
             }
         }
     }

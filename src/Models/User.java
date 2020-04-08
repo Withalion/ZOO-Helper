@@ -32,7 +32,8 @@ public class User implements Serializable, Entry {
     }
 
     @Override
-    public void TryEnter(AnimalPavilon entrySpace) {
+    public boolean TryEnter(AnimalPavilon entrySpace) {
         System.out.println("Cannot Entry");
+        return false;
     }
 }

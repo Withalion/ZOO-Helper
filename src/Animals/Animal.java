@@ -8,6 +8,7 @@ public class Animal implements Feedable, Serializable {
     private int Age;
     private String FoodType;
     private int MealPrice;
+    private boolean Hungry;
 
     public int getAge(){
         return this.Age;
@@ -26,5 +27,13 @@ public class Animal implements Feedable, Serializable {
     }
     public void setMealPrice(int AnimalMealPrice) {
         this.MealPrice = AnimalMealPrice;
+    }
+    public boolean isHungry(){
+        return this.Hungry;
+    }
+
+    @Override
+    public void FeedME() {
+
     }
 }

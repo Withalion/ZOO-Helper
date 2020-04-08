@@ -13,6 +13,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 
 public class NavstevnikView extends Application {
@@ -26,6 +28,12 @@ public class NavstevnikView extends Application {
     public Label pavilon = new Label("Choose Pavilon: ");
     public ComboBox<AnimalPavilon> pavilonChoice = new ComboBox<AnimalPavilon>(FXCollections.observableList(PavilonDB.pavilons));
 
+    EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+        public void handle(ActionEvent e) {
+            pavilon.setVisible(true);
+            pavilonChoice.setVisible(true);
+        }
+    };
     public void sceneBuilder(){
         EntryButton.setLayoutX(175);
         EntryButton.setLayoutY(350);
@@ -57,12 +65,13 @@ public class NavstevnikView extends Application {
         pavilon.setLayoutX(20);
         pavilon.setLayoutY(150);
         pavilon.setFont(new Font("times new roman", 30));
-        pavilon.setVisible(true);
+        pavilon.setVisible(false);
 
 
         pavilonChoice.setLayoutX(220);
         pavilonChoice.setLayoutY(150);
         pavilonChoice.setMinSize(70,40);
+        pavilonChoice.setVisible(false);
 
         pane.getChildren().add(EntryButton);
         pane.getChildren().add(doorOpen);
@@ -82,6 +91,7 @@ public class NavstevnikView extends Application {
         EntryButton.setOnAction(e ->{
             visitorController.TryEnter(pavilonChoice.getValue());
         });
+        actionChoice.setOnAction(event);
     }
     public void openDoor(){
         doorClosed.setVisible(false);

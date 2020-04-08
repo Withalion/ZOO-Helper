@@ -1,11 +1,13 @@
 package Controllers;
 
+import AnimalPavilons.AnimalPavilon;
 import Models.Zamestnanec;
 import View.ZamestnanecView;
 
 public class ZamestnanecController {
     private static Controllers.ZamestnanecController instance = null;
     private ZamestnanecView employeeView =null;
+    private LoginController lgInstance = LoginController.getInstance();
     private ZamestnanecController(){
 
     }
@@ -16,12 +18,9 @@ public class ZamestnanecController {
     public void PairEController(ZamestnanecView eView){
             this.employeeView = eView;
         }
-    public void EntranceOpen(){
-        employeeView.openDoor();
+    public void TryEnter(AnimalPavilon entrySpace){
+        if (lgInstance.pickedUser.TryEnter(entrySpace)) employeeView.openDoor();
+        else employeeView.lockDoor();
     }
-    public void EntranceClosed(){
-        employeeView.lockDoor();
-    }
-
 }
 
