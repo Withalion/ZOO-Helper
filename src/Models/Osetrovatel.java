@@ -36,44 +36,13 @@ public class Osetrovatel extends Zamestnanec implements Feedable, Showable{
     @Override
     public boolean TryEnter(AnimalPavilon entrySpace) {
         if (entrySpace == null ) return false;
-        if (entrySpace.occupied == false) return true;
-        else{
-            switch(entrySpace.occupants.get(0).getClass().getSimpleName()){
-                case "Amphibian":{
-                    if (Amphibian == true)return true;
-                    else return false;
-                }
-                case "Bird":{
-                    if (Bird == true)return true;
-                    else return false;
-                }
-                case "Cat":{
-                    if (Cat == true)return true;
-                    else return false;
-                }
-                case "Fish":{
-                    if (Fish == true)return true;
-                    else return false;
-                }
-                case "Invertebrate":{
-                    if (Invertebrate == true)return true;
-                    else return false;
-                }
-                case "Mammal":{
-                    if (Mammal == true)return true;
-                    else return false;
-                }
-                case "Primate":{
-                    if (Primate == true)return true;
-                    else return false;
-                }
-                case "Reptile":{
-                    if (Reptile == true)return true;
-                    else return false;
-                }
-                default: return false;
+        if (!entrySpace.occupied) return true;
+        for (int i=0; i<entrySpace.occupants.size();i++) {
+            for (Animal animal : this.animals) {
+                if (entrySpace.occupants.get(i).equals(animal)) return true;
             }
         }
+        return false;
     }
 
     public ArrayList getArraylist(){
