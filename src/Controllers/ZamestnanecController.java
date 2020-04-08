@@ -1,8 +1,14 @@
 package Controllers;
 
 import AnimalPavilons.AnimalPavilon;
+import Animals.Animal;
+import Help.UserDB;
+import Models.Osetrovatel;
+import Models.User;
 import Models.Zamestnanec;
 import View.ZamestnanecView;
+
+import java.util.ArrayList;
 
 public class ZamestnanecController {
     private static Controllers.ZamestnanecController instance = null;
@@ -21,6 +27,12 @@ public class ZamestnanecController {
     public void TryEnter(AnimalPavilon entrySpace){
         if (lgInstance.pickedUser.TryEnter(entrySpace)) employeeView.openDoor();
         else employeeView.lockDoor();
+    }
+    public void FeedAnimals(){
+        lgInstance.pickedUser.FeedME();
+    }
+    public void FeedUpdate(String text){
+        employeeView.FeedStatus.appendText(text);
     }
 }
 

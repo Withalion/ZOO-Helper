@@ -1,5 +1,5 @@
 package Models;
 
 public interface Feedable {
-    void FeedME();
+    String FeedME();
 }

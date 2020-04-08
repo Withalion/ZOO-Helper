@@ -2,11 +2,14 @@ package Models;
 
 import AnimalPavilons.AnimalPavilon;
 import Animals.Animal;
+import Controllers.ZamestnanecController;
+import View.ZamestnanecView;
 
 import java.util.ArrayList;
 
-public class Osetrovatel extends Zamestnanec implements Feedable, Showable{
-    private ArrayList<Animal> animals = new ArrayList<>();
+public class Osetrovatel extends Zamestnanec implements Showable{
+    private ZamestnanecController instance = ZamestnanecController.getInstance();
+    public ArrayList<Animal> animals = new ArrayList<>();
     private boolean Amphibian;
     private boolean Bird;
     private boolean Cat;
@@ -29,10 +32,6 @@ public class Osetrovatel extends Zamestnanec implements Feedable, Showable{
         this.setReptile(oReptile);
     }
 
-    public void FeedME(){
-
-    }
-
     @Override
     public boolean TryEnter(AnimalPavilon entrySpace) {
         if (entrySpace == null ) return false;
@@ -45,9 +44,14 @@ public class Osetrovatel extends Zamestnanec implements Feedable, Showable{
         return false;
     }
 
-    public ArrayList getArraylist(){
-        return animals;
+    @Override
+    public String FeedME() {
+        for (Animal animal : animals) {
+            if (animal.isHungry()) instance.FeedUpdate(animal.FeedME());
+        }
+        return "All animals are happy now!";
     }
+
     public void setAmphibian(boolean amphibian) {
         Amphibian = amphibian;
     }

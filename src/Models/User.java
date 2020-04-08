@@ -5,7 +5,7 @@ import Controllers.LoginController;
 
 import java.io.Serializable;
 
-public class User implements Serializable, Entry {
+public class User implements Serializable, Entry, Feedable {
     private Integer ID;
     private String Name;
     public transient LoginController loginController;
@@ -28,12 +28,16 @@ public class User implements Serializable, Entry {
     public void LogIn(){
         this.loginController = LoginController.getInstance();
         this.polyLogin();
-        return;
     }
 
     @Override
     public boolean TryEnter(AnimalPavilon entrySpace) {
         System.out.println("Cannot Entry");
         return false;
+    }
+
+    @Override
+    public String FeedME() {
+        return "";
     }
 }

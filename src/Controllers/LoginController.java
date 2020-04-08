@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 
 
 public class LoginController {
+    public static int budget = 0;
     public LoginView loginView = null;
     private static LoginController instance = null;
     public User pickedUser = null;
@@ -43,6 +44,7 @@ public class LoginController {
        }
        loginView.badLogin();
     }
+    public User getPickedUser(){return this.pickedUser;}
     public void VisitorOV(){
         new NavstevnikView().start(new Stage());
     }
