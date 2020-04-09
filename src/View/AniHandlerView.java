@@ -1,8 +1,6 @@
 package View;
 
 import AnimalPavilons.AnimalPavilon;
-import Animals.Animal;
-import Controllers.LoginController;
 import Controllers.ZamestnanecController;
 import Help.PavilonDB;
 import javafx.application.Application;
@@ -16,8 +14,8 @@ import javafx.scene.layout.Pane;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class ZamestnanecView extends Application{
-    private ZamestnanecController employeeController = ZamestnanecController.getInstance();
+public class AniHandlerView extends Application{
+    private ZamestnanecController employeeController = ZamestnanecController.getInstance(this);
     public Pane pane = new Pane();
     public Button EntryButton = new Button("Enter");
     public Label doorOpen = new Label("Access granted");
@@ -29,14 +27,21 @@ public class ZamestnanecView extends Application{
     public Button FeedButton = new Button("Feed Animals");
     public TextArea FeedStatus = new TextArea();
 
-    EventHandler<ActionEvent> enter = e -> {
-        pavilon.setVisible(true);
-        pavilonChoice.setVisible(true);
-        EntryButton.setVisible(true);
-    };
-    EventHandler<ActionEvent> feed = e -> {
-        FeedButton.setVisible(true);
-        FeedStatus.setVisible(true);
+    EventHandler<ActionEvent> DoIT = e -> {
+        if (actionChoice.getValue() == "Enter animal Pavilon") {
+            FeedButton.setVisible(false);
+            FeedStatus.setVisible(false);
+            pavilon.setVisible(true);
+            pavilonChoice.setVisible(true);
+            EntryButton.setVisible(true);
+        }
+        if (actionChoice.getValue() =="Feed Animals") {
+            pavilon.setVisible(false);
+            pavilonChoice.setVisible(false);
+            EntryButton.setVisible(false);
+            FeedButton.setVisible(true);
+            FeedStatus.setVisible(true);
+        }
     };
     public void sceneBuilder(){
         EntryButton.setLayoutX(175);
@@ -61,7 +66,7 @@ public class ZamestnanecView extends Application{
         action.setLayoutY(50);
         action.setFont(new Font("times new roman", 30));
 
-        actionChoice.getItems().addAll("Enter animal Pavilon", "Feed Animals", "Clock out");
+        actionChoice.getItems().addAll("Enter animal Pavilon", "Feed Animals", "Clock in", "Clock Out");
         actionChoice.setLayoutX(220);
         actionChoice.setLayoutY(50);
         actionChoice.setMinSize(70,40);
@@ -86,8 +91,8 @@ public class ZamestnanecView extends Application{
         FeedStatus.setLayoutX(30);
         FeedStatus.setLayoutY(100);
         FeedStatus.setVisible(false);
-        FeedStatus.setMinSize(200, 200);
-        FeedStatus.wrapTextProperty();
+        FeedStatus.setMinSize(150, 200);
+        FeedStatus.setMaxSize(440,200);
 
         pane.getChildren().add(EntryButton);
         pane.getChildren().add(doorOpen);
@@ -100,7 +105,7 @@ public class ZamestnanecView extends Application{
         pane.getChildren().add(FeedStatus);
     }
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Employee Overview");
+        primaryStage.setTitle("Animal Handler Overview");
         sceneBuilder();
         primaryStage.setScene(new Scene(pane, 500, 500));
         primaryStage.show();
@@ -112,8 +117,7 @@ public class ZamestnanecView extends Application{
         FeedButton.setOnAction(event -> {
             employeeController.FeedAnimals();
         });
-        actionChoice.setOnAction(enter);
-        actionChoice.setOnAction(feed);
+        actionChoice.setOnAction(DoIT);
     }
     public void openDoor(){
         doorClosed.setVisible(false);

@@ -1,7 +1,6 @@
 package Controllers;
 
 import View.NavstevnikView;
-import View.ZamestnanecView;
 import View.*;
 import Models.User;
 import Help.*;
@@ -48,8 +47,14 @@ public class LoginController {
     public void VisitorOV(){
         new NavstevnikView().start(new Stage());
     }
-    public void EmployeeOV(){
-        new ZamestnanecView().start(new Stage());
+    public void HandlerOV(){
+        new AniHandlerView().start(new Stage());
+    }
+    public void ManagerOV(){
+        new ManagerView().start(new Stage());
+    }
+    public void CashierOV(){
+        new CashierView().start(new Stage());
     }
     public void logoutUser(){
        UserDB.saveDB();

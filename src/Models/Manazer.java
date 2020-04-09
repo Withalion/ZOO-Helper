@@ -6,4 +6,7 @@ public class Manazer extends Zamestnanec {
         this.setID(uID);
         this.setName(uName);
     }
+    public void polyLogin(){
+        this.loginController.ManagerOV();
+    }
 }

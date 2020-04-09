@@ -3,7 +3,7 @@ package Models;
 import AnimalPavilons.AnimalPavilon;
 import Animals.Animal;
 import Controllers.ZamestnanecController;
-import View.ZamestnanecView;
+import View.AniHandlerView;
 
 import java.util.ArrayList;
 
@@ -30,6 +30,9 @@ public class Osetrovatel extends Zamestnanec implements Showable{
         this.setMammal(oMammal);
         this.setPrimate(oPrimate);
         this.setReptile(oReptile);
+    }
+    public void polyLogin(){
+        this.loginController.HandlerOV();
     }
 
     @Override
