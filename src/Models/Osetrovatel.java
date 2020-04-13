@@ -49,6 +49,7 @@ public class Osetrovatel extends Zamestnanec implements Showable{
 
     @Override
     public String FeedME() {
+        instance = ZamestnanecController.getInstance();
         for (Animal animal : animals) {
             if (animal.isHungry()) instance.FeedUpdate(animal.FeedME());
         }

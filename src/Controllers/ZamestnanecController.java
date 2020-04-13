@@ -2,6 +2,7 @@ package Controllers;
 
 import AnimalPavilons.AnimalPavilon;
 import Animals.Animal;
+import Help.AnimalDB;
 import Help.UserDB;
 import Models.Osetrovatel;
 import Models.User;
@@ -57,7 +58,8 @@ public class ZamestnanecController {
         else handlerView.lockDoor();
     }
     public void FeedAnimals(){
-        lgInstance.pickedUser.FeedME();
+       this.FeedUpdate(lgInstance.pickedUser.FeedME());
+        AnimalDB.saveDB();
     }
     public void FeedUpdate(String text){
         handlerView.FeedStatus.appendText(text);
