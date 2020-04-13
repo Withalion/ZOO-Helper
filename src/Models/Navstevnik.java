@@ -4,6 +4,7 @@ import AnimalPavilons.*;
 import Controllers.NavstevnikController;
 
 public class Navstevnik extends User{
+    int MoneySpent;
     private transient NavstevnikController NCinstance = NavstevnikController.getInstance();
     public void polyLogin(){
         this.loginController.VisitorOV();

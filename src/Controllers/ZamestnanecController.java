@@ -1,9 +1,16 @@
 package Controllers;
 
 import AnimalPavilons.AnimalPavilon;
+import Animals.Animal;
+import Help.UserDB;
+import Models.Osetrovatel;
+import Models.User;
+import Models.Zamestnanec;
 import View.AniHandlerView;
 import View.CashierView;
 import View.ManagerView;
+
+import java.util.ArrayList;
 
 public class ZamestnanecController {
     private static Controllers.ZamestnanecController instance = null;
@@ -11,6 +18,7 @@ public class ZamestnanecController {
     private ManagerView managerView =null;
     private CashierView cashierView =null;
     private LoginController lgInstance = LoginController.getInstance();
+    public ArrayList<User> StaffDB = new ArrayList<>();
     private ZamestnanecController(AniHandlerView view){
         this.handlerView = view;
     }
@@ -53,6 +61,52 @@ public class ZamestnanecController {
     }
     public void FeedUpdate(String text){
         handlerView.FeedStatus.appendText(text);
+    }
+    public void CreateStaffDB(){
+       for (User user:UserDB.users){
+           if (user instanceof Zamestnanec){
+               StaffDB.add(user);
+           }
+       }
+    }
+    public void updateDetails(User staff){
+       // managerView.salaryTXT.setText(staff.getSalary().toString());      WIP
+        managerView.idTXT.setText(staff.getID().toString());
+        managerView.nameTXT.setText(staff.getName());
+        if (staff instanceof Osetrovatel){
+            managerView.Animals.setVisible(true);
+            managerView.Animals.clear();
+            managerView.Animals.appendText("Taking care of: \n");
+            for (Animal animal:((Osetrovatel) staff).animals){
+                managerView.Animals.appendText("Name: "+animal.Name+"\nType of animal: "+animal.getClass().getSimpleName()+"\n");
+            }
+            managerView.animalADD.setVisible(true);
+            managerView.animalChoice.setVisible(true);
+        }
+        else {
+            managerView.Animals.setVisible(false);
+            managerView.animalADD.setVisible(false);
+            managerView.animalChoice.setVisible(false);
+        }
+    }
+    public void saveDATA(User staff){
+        staff.setID(Integer.valueOf(managerView.idTXT.getText()));
+        staff.setName(managerView.nameTXT.getText());
+       // staff.setSalary(Integer.valueOf(managerView.salaryTXT.getText()));        WIP
+        UserDB.saveDB();
+    }
+    public void AddAnimal(Animal pickedAnimal, User pickedCare){
+        for (Animal animal:((Osetrovatel)pickedCare).animals){      //neriesi specializaciu osetrovatelov
+            if (animal.equals(pickedAnimal)){
+                managerView.goodANI.setVisible(false);
+                managerView.wrongANI.setVisible(true);
+                return;
+            }
+        }
+        ((Osetrovatel) pickedCare).animals.add(pickedAnimal);
+        managerView.wrongANI.setVisible(false);
+        managerView.goodANI.setVisible(true);
+        this.updateDetails(pickedCare);
     }
 }
 

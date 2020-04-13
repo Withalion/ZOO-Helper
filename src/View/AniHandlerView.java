@@ -28,14 +28,14 @@ public class AniHandlerView extends Application{
     public TextArea FeedStatus = new TextArea();
 
     EventHandler<ActionEvent> DoIT = e -> {
-        if (actionChoice.getValue() == "Enter animal Pavilon") {
+        if (actionChoice.getValue().equals("Enter animal Pavilon")) {
             FeedButton.setVisible(false);
             FeedStatus.setVisible(false);
             pavilon.setVisible(true);
             pavilonChoice.setVisible(true);
             EntryButton.setVisible(true);
         }
-        if (actionChoice.getValue() =="Feed Animals") {
+        if (actionChoice.getValue().equals("Feed Animals")) {
             pavilon.setVisible(false);
             pavilonChoice.setVisible(false);
             EntryButton.setVisible(false);
