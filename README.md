@@ -18,10 +18,9 @@ V tomto projekte by som sa chcel zamerať na čipový systém v zoologickej záh
 - [x] updatnuta polymorfia pri View zamestnancoch 
 - [x] polymorfia pri interface Feedable na urovni zvierat
 - [x] UI podpora pre osetrovatelov v ManagerView (manazment zamestnancov)
-# 12. / 13. týždeň
-- [ ] implementovanie vytvarania novych navstevnikov pre pokladnikov
-- [ ] observer na vybehy ktory by sledoval pohyb ludi
-- [ ] koncept casu (otvaracia doba)
+# 13. týždeň
+- [x] implementovanie vytvarania novych navstevnikov pre pokladnikov
+- [x] pridavanie pomocou strategy
 - [ ] interface predstavenie zvierat
 - [ ] funkcionalita pre visitorov
 - [ ] zamestnavanie a prepustanie zamestnancov, vytvaranie novych zvierat, zbavovanie sa zvierat
