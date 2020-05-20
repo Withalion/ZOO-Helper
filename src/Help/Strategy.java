@@ -1,4 +1,4 @@
-package Models;
+package Help;
 
 public interface Strategy {
     void WriteUserDetails(String Name);

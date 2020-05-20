@@ -1,4 +1,4 @@
-package Models;
+package Help;
 
 import AnimalPavilons.AnimalPavilon;
 

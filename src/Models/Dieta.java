@@ -1,8 +1,9 @@
 package Models;
 
+import Help.Strategy;
 import Help.UserDB;
 
-public class Dieta extends Navstevnik implements Strategy{
+public class Dieta extends Navstevnik implements Strategy {
     public Dieta (Integer uID, String uName){
         this.setID(uID);
         this.setName(uName);

@@ -1,6 +1,6 @@
 package Animals;
 
-import Models.Showable;
+import Help.Showable;
 
 public class ShowableAnimal extends Animal implements Showable {
 }

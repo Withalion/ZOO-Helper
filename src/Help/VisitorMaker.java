@@ -1,6 +1,8 @@
-package Models;
+package Help;
 
+import Help.Strategy;
 import Help.UserDB;
+import Models.User;
 
 public class VisitorMaker {
     private Strategy TicketStrategy = null;

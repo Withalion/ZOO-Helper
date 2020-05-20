@@ -1,8 +1,9 @@
 package Models;
 
+import Help.Strategy;
 import Help.UserDB;
 
-public class Dospeli extends Navstevnik implements Strategy{
+public class Dospeli extends Navstevnik implements Strategy {
 
     public Dospeli (Integer uID, String uName){
         this.setID(uID);

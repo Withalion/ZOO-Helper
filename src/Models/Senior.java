@@ -1,8 +1,9 @@
 package Models;
 
+import Help.Strategy;
 import Help.UserDB;
 
-public class Senior extends Navstevnik implements Strategy{
+public class Senior extends Navstevnik implements Strategy {
     public Senior (Integer uID, String uName){
         this.setID(uID);
         this.setName(uName);

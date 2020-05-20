@@ -3,11 +3,11 @@ package Models;
 import AnimalPavilons.AnimalPavilon;
 import Animals.Animal;
 import Controllers.ZamestnanecController;
-import View.AniHandlerView;
+import Help.Showable;
 
 import java.util.ArrayList;
 
-public class Osetrovatel extends Zamestnanec implements Showable{
+public class Osetrovatel extends Zamestnanec implements Showable {
     private ZamestnanecController instance = ZamestnanecController.getInstance();
     public ArrayList<Animal> animals = new ArrayList<>();
     private boolean Amphibian;

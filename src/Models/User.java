@@ -2,6 +2,8 @@ package Models;
 
 import AnimalPavilons.AnimalPavilon;
 import Controllers.LoginController;
+import Help.Entry;
+import Help.Feedable;
 
 import java.io.Serializable;
 

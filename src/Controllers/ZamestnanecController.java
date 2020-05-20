@@ -3,7 +3,9 @@ package Controllers;
 import AnimalPavilons.AnimalPavilon;
 import Animals.Animal;
 import Help.AnimalDB;
+import Help.NameException;
 import Help.UserDB;
+import Help.VisitorMaker;
 import Models.*;
 import View.AniHandlerView;
 import View.CashierView;
@@ -17,7 +19,7 @@ public class ZamestnanecController {
     private ManagerView managerView =null;
     private CashierView cashierView =null;
     private LoginController lgInstance = LoginController.getInstance();
-    private VisitorMaker VisitorMaker = new VisitorMaker();
+    private Help.VisitorMaker VisitorMaker = new VisitorMaker();
     public ArrayList<User> StaffDB = new ArrayList<>();
     private ZamestnanecController(AniHandlerView view){
         this.handlerView = view;
@@ -110,15 +112,28 @@ public class ZamestnanecController {
         this.updateDetails(pickedCare);
     }
     public void sellTicket(String VisitorType, String Name){
-        switch (VisitorType){
-            case "Child" : VisitorMaker.SetStrategy(new Dieta());
-            break;
-            case "Adult" : VisitorMaker.SetStrategy(new Dospeli());
-            break;
-            case "Senior" : VisitorMaker.SetStrategy(new Senior());
-            break;
+        try {
+            if (Name.equals("")) throw new NameException("Enter visitor's name!");
+            for (int i=0; i<Name.length(); i++){
+                if (Character.isDigit(Name.charAt(i))) throw new NameException("Name contains number!");
+            }
+            switch (VisitorType) {
+                case "Child":
+                    VisitorMaker.SetStrategy(new Dieta());
+                    break;
+                case "Adult":
+                    VisitorMaker.SetStrategy(new Dospeli());
+                    break;
+                case "Senior":
+                    VisitorMaker.SetStrategy(new Senior());
+                    break;
+            }
+            VisitorMaker.MakeVisitor(Name);
+            cashierView.GoodCreate.setVisible(true);
+        } catch (NameException e) {
+            System.out.print(e.getMessage());
+            cashierView.BadCreate.setVisible(true);
         }
-        VisitorMaker.MakeVisitor(Name);
     }
 }
 

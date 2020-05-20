@@ -4,6 +4,7 @@ import Controllers.ZamestnanecController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -20,6 +21,9 @@ public class CashierView extends Application{
     public Label visitorName = new Label("Insert visitor name: ");
     public TextField InsertName = new TextField();
     public Button SellTicket = new Button("Sell Ticket");
+    public Label GoodCreate = new Label("Visitor successfully registered");
+    public Label BadCreate = new Label("Visitor registration failed");
+    public Button Repeat = new Button("Create new ticket");
 
     EventHandler<ActionEvent> ShowMore = e -> {
         if (actionChoice.getValue().equals("Sell ticket")) {
@@ -28,6 +32,7 @@ public class CashierView extends Application{
             visitorName.setVisible(true);
             InsertName.setVisible(true);
             SellTicket.setVisible(true);
+            Repeat.setVisible(true);
         }
     };
 
@@ -64,10 +69,28 @@ public class CashierView extends Application{
         InsertName.setVisible(false);
 
         SellTicket.setLayoutY(400);
-        SellTicket.setLayoutX(200);
+        SellTicket.setLayoutX(100);
         SellTicket.setMinSize(100, 70);
         SellTicket.setFont(new Font("times new roman", 20));
         SellTicket.setVisible(false);
+
+        GoodCreate.setLayoutX(100);
+        GoodCreate.setLayoutY(350);
+        GoodCreate.setFont(new Font("times new roman", 20));
+        GoodCreate.setVisible(false);
+        GoodCreate.setTextFill(Color.GREEN);
+
+        BadCreate.setLayoutX(100);
+        BadCreate.setLayoutY(350);
+        BadCreate.setFont(new Font("times new roman", 20));
+        BadCreate.setVisible(false);
+        BadCreate.setTextFill(Color.RED);
+
+        Repeat.setLayoutY(400);
+        Repeat.setLayoutX(300);
+        Repeat.setMinSize(100, 70);
+        Repeat.setFont(new Font("times new roman", 20));
+        Repeat.setVisible(false);
 
         pane.getChildren().add(action);
         pane.getChildren().add(actionChoice);
@@ -76,6 +99,9 @@ public class CashierView extends Application{
         pane.getChildren().add(visitorName);
         pane.getChildren().add(InsertName);
         pane.getChildren().add(SellTicket);
+        pane.getChildren().add(GoodCreate);
+        pane.getChildren().add(BadCreate);
+        pane.getChildren().add(Repeat);
     }
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Cashier Overview");
@@ -85,7 +111,15 @@ public class CashierView extends Application{
         employeeController.PairEController(this);
         actionChoice.setOnAction(ShowMore);
         SellTicket.setOnAction(event -> {
+            GoodCreate.setVisible(false);
+            BadCreate.setVisible(false);
             employeeController.sellTicket(VisitorChoice.getValue(), InsertName.getText());
+        });
+        Repeat.setOnAction(event -> {
+            InsertName.setText("");
+            VisitorChoice.setValue(null);
+            GoodCreate.setVisible(false);
+            BadCreate.setVisible(false);
         });
     }
 }

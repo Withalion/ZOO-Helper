@@ -1,6 +1,6 @@
 package Animals;
 
-import Models.Feedable;
+import Help.Feedable;
 import java.io.Serializable;
 
 public class Animal implements Feedable, Serializable {
