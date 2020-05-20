@@ -4,9 +4,7 @@ import AnimalPavilons.AnimalPavilon;
 import Animals.Animal;
 import Help.AnimalDB;
 import Help.UserDB;
-import Models.Osetrovatel;
-import Models.User;
-import Models.Zamestnanec;
+import Models.*;
 import View.AniHandlerView;
 import View.CashierView;
 import View.ManagerView;
@@ -19,6 +17,7 @@ public class ZamestnanecController {
     private ManagerView managerView =null;
     private CashierView cashierView =null;
     private LoginController lgInstance = LoginController.getInstance();
+    private VisitorMaker VisitorMaker = new VisitorMaker();
     public ArrayList<User> StaffDB = new ArrayList<>();
     private ZamestnanecController(AniHandlerView view){
         this.handlerView = view;
@@ -109,6 +108,17 @@ public class ZamestnanecController {
         managerView.wrongANI.setVisible(false);
         managerView.goodANI.setVisible(true);
         this.updateDetails(pickedCare);
+    }
+    public void sellTicket(String VisitorType, String Name){
+        switch (VisitorType){
+            case "Child" : VisitorMaker.SetStrategy(new Dieta());
+            break;
+            case "Adult" : VisitorMaker.SetStrategy(new Dospeli());
+            break;
+            case "Senior" : VisitorMaker.SetStrategy(new Senior());
+            break;
+        }
+        VisitorMaker.MakeVisitor(Name);
     }
 }
 

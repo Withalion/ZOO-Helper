@@ -50,10 +50,11 @@ public class Osetrovatel extends Zamestnanec implements Showable{
     @Override
     public String FeedME() {
         instance = ZamestnanecController.getInstance();
+        if (animals.isEmpty()) return "No animals to feed!\n";
         for (Animal animal : animals) {
             if (animal.isHungry()) instance.FeedUpdate(animal.FeedME());
         }
-        return "All animals are happy now!";
+        return "All animals are happy now!\n";
     }
 
     public void setAmphibian(boolean amphibian) {

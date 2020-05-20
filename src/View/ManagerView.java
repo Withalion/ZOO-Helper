@@ -53,7 +53,7 @@ public class ManagerView extends Application{
         action.setLayoutY(50);
         action.setFont(new Font("times new roman", 30));
 
-        actionChoice.getItems().addAll("Manage Staff", "Hire Staff", "Fire Staff", "Buy Animal", "Sell Animal", "See Audit", "Clock in", "Clock Out");
+        actionChoice.getItems().addAll("Manage Staff", "Hire Staff", "Fire Staff", "Buy Animal", "Sell Animal");
         actionChoice.setLayoutX(220);
         actionChoice.setLayoutY(50);
         actionChoice.setMinSize(70,40);

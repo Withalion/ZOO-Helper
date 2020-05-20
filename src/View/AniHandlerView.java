@@ -41,6 +41,8 @@ public class AniHandlerView extends Application{
             EntryButton.setVisible(false);
             FeedButton.setVisible(true);
             FeedStatus.setVisible(true);
+            doorOpen.setVisible(false);
+            doorClosed.setVisible(false);
         }
     };
     public void sceneBuilder(){
@@ -66,7 +68,7 @@ public class AniHandlerView extends Application{
         action.setLayoutY(50);
         action.setFont(new Font("times new roman", 30));
 
-        actionChoice.getItems().addAll("Enter animal Pavilon", "Feed Animals", "Clock in", "Clock Out");
+        actionChoice.getItems().addAll("Enter animal Pavilon", "Feed Animals");
         actionChoice.setLayoutX(220);
         actionChoice.setLayoutY(50);
         actionChoice.setMinSize(70,40);
