@@ -1,0 +1,1620 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>5</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2425</x>
+      <y>0</y>
+      <w>420</w>
+      <h>310</h>
+    </coordinates>
+    <panel_attributes>View::AniHandlerView
+--
+-employeeController = ZamestnanecController.getInstance(this): ZamestnanecController
++pane = new Pane(): Pane
++EntryButton = new Button("Enter"): Button
++doorOpen = new Label("Access granted"): Label
++doorClosed = new Label("Access denied"): Label
++action = new Label("Action to do: "): Label
++actionChoice = new ComboBox(): ComboBox&lt;String&gt;
++pavilon = new Label("Choose Pavilon: "): Label
++pavilonChoice = new ComboBox&lt;AnimalPavilon&gt;(FXCollections.observableList(PavilonDB.pavilons)): ComboBox&lt;AnimalPavilon&gt;
++FeedButton = new Button("Feed Animals"): Button
++FeedStatus = new TextArea(): TextArea
+~DoIT =  e -&gt; {&#13;
+    if (actionChoice.getValue().equals("Enter animal Pavilon")) {&#13;
+        FeedButton.setVisible(false);&#13;
+        FeedStatus.setVisible(false);&#13;
+        pavilon.setVisible(true);&#13;
+        pavilonChoice.setVisible(true);&#13;
+        EntryButton.setVisible(true);&#13;
+    }&#13;
+    if (actionChoice.getValue().equals("Feed Animals")) {&#13;
+        pavilon.setVisible(false);&#13;
+        pavilonChoice.setVisible(false);&#13;
+        EntryButton.setVisible(false);&#13;
+        FeedButton.setVisible(true);&#13;
+        FeedStatus.setVisible(true);&#13;
+        doorOpen.setVisible(false);&#13;
+        doorClosed.setVisible(false);&#13;
+    }&#13;
+}: EventHandler&lt;ActionEvent&gt;
+--
++sceneBuilder(): void
++start(Stage primaryStage): void
++openDoor(): void
++lockDoor(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2495</x>
+      <y>345</y>
+      <w>375</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>View::ManagerView
+--
+-employeeController = ZamestnanecController.getInstance(this): ZamestnanecController
++pane = new Pane(): Pane
++action = new Label("Action to do: "): Label
++actionChoice = new ComboBox(): ComboBox&lt;String&gt;
++staff = new Label("Pick employee: "): Label
++staffChoice = new ComboBox&lt;User&gt;(FXCollections.observableList(employeeController.StaffDB)): ComboBox&lt;User&gt;
++name = new Label("Name: "): Label
++nameTXT = new TextField(): TextField
++ID = new Label("ID: "): Label
++idTXT = new TextField(): TextField
++Salary = new Label("Salary: "): Label
++salaryTXT = new TextField(): TextField
++save = new Button("Save changes"): Button
++Animals = new TextArea(): TextArea
++animalADD = new Label("Add animal: "): Label
++animalChoice = new ComboBox(FXCollections.observableList(AnimalDB.animals)): ComboBox&lt;Animal&gt;
++goodANI = new Label("Animal assigned to Caretaker"): Label
++wrongANI = new Label("Can't assign this animal to this worker"): Label
+~doIT =  event -&gt; {&#13;
+    if (actionChoice.getValue().equals("Manage Staff"))&#13;
+        staffChoice.setVisible(true);&#13;
+    staff.setVisible(true);&#13;
+    name.setVisible(true);&#13;
+    nameTXT.setVisible(true);&#13;
+    ID.setVisible(true);&#13;
+    idTXT.setVisible(true);&#13;
+    Salary.setVisible(true);&#13;
+    salaryTXT.setVisible(true);&#13;
+    save.setVisible(true);&#13;
+}: EventHandler&lt;ActionEvent&gt;
+--
++sceneBuilder(): void
++start(Stage primaryStage): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1015</x>
+      <y>1060</y>
+      <w>315</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>Models::Osetrovatel
+--
+-instance = ZamestnanecController.getInstance(): ZamestnanecController
++animals = new ArrayList(): ArrayList&lt;Animal&gt;
+-Amphibian: boolean
+-Bird: boolean
+-Cat: boolean
+-Fish: boolean
+-Invertebrate: boolean
+-Mammal: boolean
+-Primate: boolean
+-Reptile: boolean
+--
++Osetrovatel(int uID, String uName, boolean oAmphibian, boolean oBird, boolean oCat,
+boolean oFish, boolean oInvertebrate, boolean oMammal, boolean oPrimate, boolean oReptile): ctor
++polyLogin(): void
++TryEnter(AnimalPavilon entrySpace): boolean
++FeedME(): String
++setAmphibian(boolean amphibian): void
++isAmphibian(): boolean
++setBird(boolean bird): void
++isBird(): boolean
++setCat(boolean cat): void
++isCat(): boolean
++setFish(boolean fish): void
++isFish(): boolean
++setInvertebrate(boolean invertebrate): void
++isInvertebrate(): boolean
++setMammal(boolean mammal): void
++isMammal(): boolean
++setPrimate(boolean primate): void
++isPrimate(): boolean
++setReptile(boolean reptile): void
++isReptile(): boolean
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1785</x>
+      <y>320</y>
+      <w>230</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>Controllers::ZamestnanecController
+--
+-instance = null: Controllers.ZamestnanecController
+-handlerView = null: AniHandlerView
+-managerView = null: ManagerView
+-cashierView = null: CashierView
+-lgInstance = LoginController.getInstance(): LoginController
+-VisitorMaker = new VisitorMaker(): Help.VisitorMaker
++StaffDB = new ArrayList(): ArrayList&lt;User&gt;
+--
+-ZamestnanecController(AniHandlerView view): ctor
+-ZamestnanecController(ManagerView view): ctor
+-ZamestnanecController(CashierView view): ctor
++getInstance(AniHandlerView view): Controllers.ZamestnanecController
++getInstance(ManagerView view): Controllers.ZamestnanecController
++getInstance(CashierView view): Controllers.ZamestnanecController
++getInstance(): Controllers.ZamestnanecController
++PairEController(AniHandlerView eView): void
++PairEController(ManagerView eView): void
++PairEController(CashierView eView): void
++TryEnter(AnimalPavilon entrySpace): void
++FeedAnimals(): void
++FeedUpdate(String text): void
++CreateStaffDB(): void
++updateDetails(User staff): void
++saveDATA(User staff): void
++AddAnimal(Animal pickedAnimal, User pickedCare): void
++sellTicket(String VisitorType, String Name): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2530</x>
+      <y>690</y>
+      <w>285</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>View::CashierView
+--
+-employeeController = ZamestnanecController.getInstance(this): ZamestnanecController
++pane = new Pane(): Pane
++action = new Label("Action to do: "): Label
++actionChoice = new ComboBox(): ComboBox&lt;String&gt;
++VisitorChoice = new ComboBox(): ComboBox&lt;String&gt;
++visitor = new Label("Choose visitor category: "): Label
++visitorName = new Label("Insert visitor name: "): Label
++InsertName = new TextField(): TextField
++SellTicket = new Button("Sell Ticket"): Button
++GoodCreate = new Label("Visitor successfully registered"): Label
++BadCreate = new Label("Visitor registration failed"): Label
++Repeat = new Button("Create new ticket"): Button
+~ShowMore =  e -&gt; {&#13;
+    if (actionChoice.getValue().equals("Sell ticket")) {&#13;
+        VisitorChoice.setVisible(true);&#13;
+        visitor.setVisible(true);&#13;
+        visitorName.setVisible(true);&#13;
+        InsertName.setVisible(true);&#13;
+        SellTicket.setVisible(true);&#13;
+        Repeat.setVisible(true);&#13;
+    }&#13;
+}: EventHandler&lt;ActionEvent&gt;
+--
++sceneBuilder(): void
++start(Stage primaryStage): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>510</x>
+      <y>370</y>
+      <w>420</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>View::NavstevnikView
+--
+-visitorController = NavstevnikController.getInstance(): NavstevnikController
++pane = new Pane(): Pane
++EntryButton = new Button("Enter"): Button
++doorOpen = new Label("Access granted"): Label
++doorClosed = new Label("Access denied"): Label
++action = new Label("Action to do: "): Label
++actionChoice = new ComboBox(): ComboBox&lt;String&gt;
++pavilon = new Label("Choose Pavilon: "): Label
++pavilonChoice = new ComboBox&lt;AnimalPavilon&gt;(FXCollections.observableList(PavilonDB.pavilons)): ComboBox&lt;AnimalPavilon&gt;
+~event = new EventHandler&lt;ActionEvent&gt;() {&#13;
+&#13;
+    public void handle(ActionEvent e) {&#13;
+        pavilon.setVisible(true);&#13;
+        pavilonChoice.setVisible(true);&#13;
+    }&#13;
+}: EventHandler&lt;ActionEvent&gt;
+--
++sceneBuilder(): void
++start(Stage primaryStage): void
++openDoor(): void
++lockDoor(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1470</x>
+      <y>350</y>
+      <w>130</w>
+      <h>175</h>
+    </coordinates>
+    <panel_attributes>Controllers::LoginController
+--
++budget = 0: int
++loginView = null: LoginView
+-instance = null: LoginController
++pickedUser = null: User
+--
+-LoginController(): ctor
++getInstance(): LoginController
++PairController(LoginView lgView): void
++loadUsers(): void
++loadAnimals(): void
++loadPavilons(): void
++loginUser(String userID): void
++getPickedUser(): User
++VisitorOV(): void
++HandlerOV(): void
++ManagerOV(): void
++CashierOV(): void
++logoutUser(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2125</x>
+      <y>800</y>
+      <w>150</w>
+      <h>145</h>
+    </coordinates>
+    <panel_attributes>Animals::Animal
+--
++Name: String
+-Age: int
+-FoodType: String
+-MealPrice: int
+-Hungry = true: boolean
+--
++getAge(): int
++setAge(int AnimalAge): void
++getFoodType(): String
++setFoodType(String AnimalFoodType): void
++getMealPrice(): int
++setMealPrice(int AnimalMealPrice): void
++setHungry(boolean hunger): void
++isHungry(): boolean
++FeedME(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1440</x>
+      <y>145</y>
+      <w>205</w>
+      <h>145</h>
+    </coordinates>
+    <panel_attributes>View::LoginView
+--
+-loginController = LoginController.getInstance(): LoginController
+-welcome = new Label("Welcome"): Label
+-UserID = new Label("UserID"): Label
+-wrong = new Label("User not found!"): Label
+-Name = new Label("Meno"): Label
+-User = new TextField(): TextField
++loginBT = new Button("Log In"): Button
++logoutBT = new Button("Log Out"): Button
++pane = new Pane(): Pane
+--
++start(Stage primaryStage): void
++goodLogin(String name): void
++badLogin(): void
++logout(): void
++main(String[] args): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>745</x>
+      <y>720</y>
+      <w>155</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Models::User
+--
+-ID: Integer
+-Name: String
++loginController: LoginController
+--
++setID(Integer uID): void
++getID(): Integer
++setName(String uName): void
++getName(): String
++polyLogin(): void
++LogIn(): void
++TryEnter(AnimalPavilon entrySpace): boolean
++FeedME(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1125</x>
+      <y>400</y>
+      <w>195</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Controllers::NavstevnikController
+--
+-instance = null: NavstevnikController
+-lgInstance = LoginController.getInstance(): LoginController
+-visitorView = null: NavstevnikView
+--
+-NavstevnikController(): ctor
++getInstance(): NavstevnikController
++PairVController(NavstevnikView vView): void
++TryEnter(AnimalPavilon entrySpace): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1850</x>
+      <y>660</y>
+      <w>185</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Help::AnimalDB
+--
++animals = new ArrayList&lt;Animal&gt;(): ArrayList&lt;Animal&gt;
+--
++loadDB(): void
++fillDB(): void
++saveDB(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1390</x>
+      <y>975</y>
+      <w>230</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Help::PavilonDB
+--
++pavilons = new ArrayList&lt;AnimalPavilon&gt;(): ArrayList&lt;AnimalPavilon&gt;
+--
++loadDB(): void
++fillDB(): void
++saveDB(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1030</x>
+      <y>610</y>
+      <w>165</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Help::UserDB
+--
++users = new ArrayList&lt;User&gt;(): ArrayList&lt;User&gt;
+--
++loadDB(): void
++fillDB(): void
++saveDB(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>230</x>
+      <y>895</y>
+      <w>230</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Models::Navstevnik
+--
+~MoneySpent: int
+-NCinstance = NavstevnikController.getInstance(): NavstevnikController
+--
++polyLogin(): void
++TryEnter(AnimalPavilon entrySpace): boolean
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>1205</y>
+      <w>140</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>Help::VisitorMaker
+--
+-TicketStrategy = null: Strategy
+--
++SetStrategy(Strategy NewStrategy): void
++MakeVisitor(String Name): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>1050</y>
+      <w>130</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>Models::Dieta
+--
+--
++Dieta(Integer uID, String uName): ctor
++Dieta(): ctor
++WriteUserDetails(String Name): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>200</x>
+      <y>1050</y>
+      <w>140</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>Models::Dospeli
+--
+--
++Dospeli(Integer uID, String uName): ctor
++Dospeli(): ctor
++WriteUserDetails(String Name): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>1050</y>
+      <w>135</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>Models::Senior
+--
+--
++Senior(Integer uID, String uName): ctor
++Senior(): ctor
++WriteUserDetails(String Name): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1420</x>
+      <y>1425</y>
+      <w>190</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>AnimalPavilons::AnimalPavilon
+--
++occupied: boolean
++occupants = new ArrayList&lt;Animal&gt;(): ArrayList&lt;Animal&gt;
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2165</x>
+      <y>1195</y>
+      <w>130</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Animals::Amphibian
+--
+--
++Amphibian(String aName, int aAge, 
+String aFoodType, int aMealPrice): ctor
++FeedME(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2315</x>
+      <y>1195</y>
+      <w>130</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Animals::Bird
+--
+--
++Bird(String aName, int aAge, 
+String aFoodType, int aMealPrice): ctor
++FeedME(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1820</x>
+      <y>1195</y>
+      <w>130</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Animals::Cat
+--
+--
++Cat(String aName, int aAge, 
+String aFoodType, int aMealPrice): ctor
++FeedME(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2465</x>
+      <y>1195</y>
+      <w>130</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Animals::Fish
+--
+--
++Fish(String aName, int aAge, 
+String aFoodType, int aMealPrice): ctor
++FeedME(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2620</x>
+      <y>1195</y>
+      <w>130</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Animals::Invertebrate
+--
+--
++Invertebrate(String aName, int aAge, 
+String aFoodType, int aMealPrice): ctor
++FeedME(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1660</x>
+      <y>1195</y>
+      <w>145</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Animals::Mammal
+--
+--
++Mammal(String aName, int aAge, 
+String aFoodType, int aMealPrice): ctor
++FeedME(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1970</x>
+      <y>1195</y>
+      <w>135</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Animals::Primate
+--
+--
++Primate(String aName, int aAge, 
+String aFoodType, int aMealPrice): ctor
++FeedME(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2775</x>
+      <y>1195</y>
+      <w>130</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Animals::Reptile
+--
+--
++Reptile(String aName, int aAge, 
+String aFoodType, int aMealPrice): ctor
++FeedME(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>595</x>
+      <y>1415</y>
+      <w>155</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+Help::Entry
+--
+--
+~TryEnter(AnimalPavilon entrySpace): boolean
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1265</x>
+      <y>785</y>
+      <w>65</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+Help::Feedable
+--
+--
+~FeedME(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>250</x>
+      <y>1210</y>
+      <w>125</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+Help::Strategy
+--
+--
+~WriteUserDetails(String Name): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>830</x>
+      <y>1060</y>
+      <w>140</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Models::Manazer
+--
+--
++Manazer(Integer uID, String uName): ctor
++polyLogin(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>1060</y>
+      <w>145</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Models::Pokladnik
+--
+--
++Pokladnik(Integer uID, String uName): ctor
++polyLogin(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1155</x>
+      <y>1555</y>
+      <w>115</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>AnimalPavilons::Aquarium
+--
+--
++Aquarium(Animal Occupant): ctor
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1275</x>
+      <y>1555</y>
+      <w>105</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>AnimalPavilons::Aviary
+--
+--
++Aviary(Animal Occupant): ctor
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1385</x>
+      <y>1555</y>
+      <w>135</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>AnimalPavilons::ButterflyGarden
+--
+--
++ButterflyGarden(Animal Occupant): ctor
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1525</x>
+      <y>1555</y>
+      <w>105</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>AnimalPavilons::Cage
+--
+--
++Cage(Animal Occupant): ctor
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1635</x>
+      <y>1555</y>
+      <w>115</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>AnimalPavilons::Paddock
+--
+--
++Paddock(Animal Occupant): ctor
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1755</x>
+      <y>1555</y>
+      <w>115</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>AnimalPavilons::Terrarium
+--
+--
++Terrarium(Animal Occupant): ctor
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1945</x>
+      <y>910</y>
+      <w>50</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+Help::Showable
+--
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>840</x>
+      <y>915</y>
+      <w>80</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>Models::Zamestnanec
+--
+-salary: int
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2435</x>
+      <y>1015</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Animals::NotshowableAnimal
+--
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1925</x>
+      <y>1010</y>
+      <w>90</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Animals::ShowableAnimal
+--
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>875</x>
+      <y>835</y>
+      <w>15</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>455</x>
+      <y>835</y>
+      <w>300</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>580.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>950</y>
+      <w>60</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>405</x>
+      <y>950</y>
+      <w>75</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>95</x>
+      <y>950</y>
+      <w>145</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>270.0;10.0;10.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>915</x>
+      <y>945</y>
+      <w>195</w>
+      <h>125</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;370.0;230.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>875</x>
+      <y>945</y>
+      <w>40</w>
+      <h>125</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;230.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>735</x>
+      <y>945</y>
+      <w>115</w>
+      <h>125</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>210.0;10.0;10.0;230.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>925</x>
+      <y>445</y>
+      <w>210</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;400.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>925</x>
+      <y>445</y>
+      <w>210</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>400.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1315</x>
+      <y>440</y>
+      <w>165</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;310.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1315</x>
+      <y>440</y>
+      <w>165</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>310.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1595</x>
+      <y>400</y>
+      <w>200</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;80.0;380.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1595</x>
+      <y>400</y>
+      <w>200</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>380.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1535</x>
+      <y>285</y>
+      <w>15</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1535</x>
+      <y>285</y>
+      <w>15</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2010</x>
+      <y>135</y>
+      <w>425</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;480.0;830.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2010</x>
+      <y>445</y>
+      <w>495</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;970.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2010</x>
+      <y>135</y>
+      <w>425</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>830.0;10.0;10.0;480.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2010</x>
+      <y>445</y>
+      <w>495</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>970.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2010</x>
+      <y>535</y>
+      <w>530</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;1040.0;480.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2010</x>
+      <y>535</y>
+      <w>530</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>1040.0;480.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1735</x>
+      <y>1025</y>
+      <w>200</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>380.0;10.0;10.0;340.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1890</x>
+      <y>1035</y>
+      <w>75</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;320.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1975</x>
+      <y>1035</y>
+      <w>80</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;320.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1970</x>
+      <y>940</y>
+      <w>165</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>310.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2235</x>
+      <y>1040</y>
+      <w>210</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>400.0;10.0;10.0;310.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2390</x>
+      <y>1040</y>
+      <w>80</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;310.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2485</x>
+      <y>1040</y>
+      <w>50</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;310.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2510</x>
+      <y>1040</y>
+      <w>185</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;350.0;310.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2530</x>
+      <y>1035</y>
+      <w>325</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;630.0;320.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2270</x>
+      <y>940</y>
+      <w>215</w>
+      <h>85</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;410.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1520</x>
+      <y>1465</y>
+      <w>70</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1575</x>
+      <y>1465</y>
+      <w>90</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1605</x>
+      <y>1465</y>
+      <w>220</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;420.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1460</x>
+      <y>1465</y>
+      <w>40</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1325</x>
+      <y>1465</y>
+      <w>135</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>250.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1205</x>
+      <y>1460</y>
+      <w>225</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>430.0;10.0;10.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1290</x>
+      <y>825</y>
+      <w>15</w>
+      <h>245</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;470.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1325</x>
+      <y>800</y>
+      <w>810</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;1600.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>1320</y>
+      <w>325</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;190.0;10.0;10.0;630.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>745</x>
+      <y>1435</y>
+      <w>685</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;1350.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>455</x>
+      <y>930</y>
+      <w>185</w>
+      <h>495</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>350.0;970.0;350.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>1100</y>
+      <w>40</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>60.0;220.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>1100</y>
+      <w>95</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;220.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>90</x>
+      <y>1100</y>
+      <w>180</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>340.0;220.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>370</x>
+      <y>1225</y>
+      <w>300</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>580.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>725</x>
+      <y>1100</y>
+      <w>15</w>
+      <h>115</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;210.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1940</x>
+      <y>940</y>
+      <w>40</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>865</x>
+      <y>645</y>
+      <w>175</w>
+      <h>85</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>330.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2030</x>
+      <y>690</y>
+      <w>170</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;320.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1505</x>
+      <y>1030</y>
+      <w>15</w>
+      <h>405</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;790.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1190</x>
+      <y>520</y>
+      <w>305</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;220.0;590.0;220.0;590.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1585</x>
+      <y>520</y>
+      <w>275</w>
+      <h>175</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>530.0;330.0;10.0;330.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1530</x>
+      <y>520</y>
+      <w>15</w>
+      <h>465</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;910.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2005</x>
+      <y>555</y>
+      <w>245</w>
+      <h>255</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>470.0;490.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1960</x>
+      <y>555</y>
+      <w>15</w>
+      <h>115</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;210.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1190</x>
+      <y>555</y>
+      <w>605</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;120.0;1190.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>895</x>
+      <y>555</y>
+      <w>935</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;460.0;1850.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>815</x>
+      <y>485</y>
+      <w>350</w>
+      <h>245</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;470.0;680.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1110</x>
+      <y>485</y>
+      <w>100</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;250.0;180.0;10.0</additional_attributes>
+  </element>
+</diagram>
