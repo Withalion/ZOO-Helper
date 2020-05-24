@@ -4,37 +4,35 @@ import java.util.ArrayList;
 import Models.*;
 import java.io.*;
 
-public class UserDB {
+public class UserDB extends Thread{
     public static ArrayList<User> users = new ArrayList<User>();
+    private Thread ActiveThread;
 
-    public static void loadDB(){   //deserialize arraylist
+    private void loadDB () {   //deserialize arraylist
         try {
             FileInputStream fileIn = new FileInputStream("UserBackup");
-            ObjectInputStream ObjectIn = new ObjectInputStream(fileIn);
-            users = (ArrayList) ObjectIn.readObject();
-            ObjectIn.close();
-            fileIn.close();
-        }
-        catch (IOException ioe) {
-            System.out.println("UserFile not found");
-            UserDB.fillDB();
-        }
-        catch (ClassNotFoundException c) {
-            System.out.println("Class not found");
+               ObjectInputStream ObjectIn = new ObjectInputStream(fileIn);
+               users = (ArrayList) ObjectIn.readObject();
+               ObjectIn.close();
+               fileIn.close();
+        } catch (IOException ioe) {
+               System.out.println("UserFile not found");
+               this.fillDB();
+        } catch (ClassNotFoundException c) {
+               System.out.println("Class not found");
         }
     }
 
-    public static void fillDB(){   //naplnenie databazy prototypmi ak neexistuje zaloha
+    private void fillDB () {   //naplnenie databazy prototypmi ak neexistuje zaloha
         users.add(new Dieta(10001, "Janko"));
         users.add(new Dospeli(10002, "Marian"));
         users.add(new Senior(10003, "Imrich"));
         users.add(new Pokladnik(50001, "Marienka"));
         users.add(new Manazer(90001, "Alfonz"));
-        users.add(new Osetrovatel(50002, "Edo", false,true, false,true,false,true,false,false));
-
+        users.add(new Osetrovatel(50002, "Edo", false, true, false, true, false, true, false, false));
     }
 
-    public static void saveDB(){   //serialize arraylist
+    private void saveDB () {   //serialize arraylist
         if (users != null) {
             try {
                 FileOutputStream fileOut = new FileOutputStream("UserBackup");
@@ -45,6 +43,20 @@ public class UserDB {
             } catch (IOException ioe) {
                 System.out.println("UserData neboli backupnute");
             }
+        }
+    }
+
+    @Override
+    public void run() {
+        if (users.isEmpty()) loadDB();
+        else saveDB();
+    }
+
+    @Override
+    public synchronized void start() {
+        if (ActiveThread == null){
+            ActiveThread = new Thread(this);
+            ActiveThread.start();
         }
     }
 }

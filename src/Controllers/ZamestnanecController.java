@@ -59,8 +59,9 @@ public class ZamestnanecController {
         else handlerView.lockDoor();
     }
     public void FeedAnimals(){
-       this.FeedUpdate(lgInstance.pickedUser.FeedME());
-        AnimalDB.saveDB();
+        this.FeedUpdate(lgInstance.pickedUser.FeedME());
+        AnimalDB ActiveAnimalDB = new AnimalDB();
+        ActiveAnimalDB.start();
     }
     public void FeedUpdate(String text){
         handlerView.FeedStatus.appendText(text);
@@ -96,7 +97,8 @@ public class ZamestnanecController {
         staff.setID(Integer.valueOf(managerView.idTXT.getText()));
         staff.setName(managerView.nameTXT.getText());
        // staff.setSalary(Integer.valueOf(managerView.salaryTXT.getText()));        WIP
-        UserDB.saveDB();
+        UserDB ActiveUserDB = new UserDB();
+        ActiveUserDB.start();
     }
     public void AddAnimal(Animal pickedAnimal, User pickedCare){
         for (Animal animal:((Osetrovatel)pickedCare).animals){      //neriesi specializaciu osetrovatelov

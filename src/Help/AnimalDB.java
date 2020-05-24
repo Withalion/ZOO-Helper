@@ -6,10 +6,11 @@ import Models.*;
 import java.io.*;
 import java.util.ArrayList;
 
-public class AnimalDB {
+public class AnimalDB extends Thread{
     public static ArrayList<Animal> animals = new ArrayList<Animal>();
+    private Thread ActiveThread;
 
-    public static void loadDB(){   //deserialize arraylist
+    private static void loadDB(){   //deserialize arraylist
         try {
             FileInputStream fileIn = new FileInputStream("AnimalBackup");
             ObjectInputStream ObjectIn = new ObjectInputStream(fileIn);
@@ -26,7 +27,7 @@ public class AnimalDB {
         }
     }
 
-    public static void fillDB(){   //naplnenie databazy prototypmi ak neexistuje zaloha
+    private static void fillDB(){   //naplnenie databazy prototypmi ak neexistuje zaloha
         animals.add(new Cat("Boby", 4, "MEAT", 30));
         animals.add(new Amphibian("Mlok", 1, "WORMS", 2));
         animals.add(new Bird("Jerry", 3,"SEEDS, FRUITS", 4));
@@ -37,7 +38,7 @@ public class AnimalDB {
         animals.add(new Reptile("Geko", 3, "VEGETABLE", 5));
     }
 
-    public static void saveDB(){   //serialize arraylist
+    private static void saveDB(){   //serialize arraylist
         if (animals != null) {
             try {
                 FileOutputStream fileOut = new FileOutputStream("AnimalBackup");
@@ -48,6 +49,20 @@ public class AnimalDB {
             } catch (IOException ioe) {
                 System.out.println("AnimalData neboli backupnute");
             }
+        }
+    }
+
+    @Override
+    public void run() {
+        if (animals.isEmpty()) loadDB();
+        else saveDB();
+    }
+
+    @Override
+    public synchronized void start() {
+        if (ActiveThread == null){
+            ActiveThread = new Thread(this);
+            ActiveThread.start();
         }
     }
 }

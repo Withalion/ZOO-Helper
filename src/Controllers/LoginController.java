@@ -13,7 +13,6 @@ public class LoginController {
     private static LoginController instance = null;
     public User pickedUser = null;
     private LoginController(){
-
     }
 
     public static LoginController getInstance(){
@@ -24,10 +23,17 @@ public class LoginController {
         this.loginView = lgView;
     }
     public void loadUsers(){
-        UserDB.loadDB();
+        UserDB ActiveUserDB = new UserDB();
+        ActiveUserDB.start();
     }
-    public void loadAnimals(){AnimalDB.loadDB();}
-    public void loadPavilons(){PavilonDB.loadDB();}
+    public void loadAnimals(){
+        AnimalDB ActiveAnimalDB = new AnimalDB();
+        ActiveAnimalDB.start();
+    }
+    public void loadPavilons(){
+        PavilonDB ActivePavilonDB = new PavilonDB();
+        ActivePavilonDB.start();
+    }
     public void loginUser(String userID){
        for (int i = 0; i <UserDB.users.size(); i++){
            try {                                             //exception ak by zadane ID bola blbost
@@ -57,9 +63,12 @@ public class LoginController {
         new CashierView().start(new Stage());
     }
     public void logoutUser(){
-       UserDB.saveDB();
-       AnimalDB.saveDB();
-       PavilonDB.saveDB();
-       this.loginView.logout();
+        UserDB ActiveUserDB = new UserDB();
+        ActiveUserDB.start();
+        AnimalDB ActiveAnimalDB = new AnimalDB();
+        ActiveAnimalDB.start();
+        PavilonDB ActivePavilonDB = new PavilonDB();
+        ActivePavilonDB.start();
+        this.loginView.logout();
     }
 }

@@ -8,7 +8,7 @@ import Help.Showable;
 import java.util.ArrayList;
 
 public class Osetrovatel extends Zamestnanec implements Showable {
-    private ZamestnanecController instance = ZamestnanecController.getInstance();
+    private transient ZamestnanecController instance = ZamestnanecController.getInstance();
     public ArrayList<Animal> animals = new ArrayList<>();
     private boolean Amphibian;
     private boolean Bird;

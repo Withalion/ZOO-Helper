@@ -6,10 +6,10 @@ import Animals.*;
 import java.io.*;
 import java.util.ArrayList;
 
-public class PavilonDB {
+public class PavilonDB extends Thread{
     public static ArrayList<AnimalPavilon> pavilons = new ArrayList<AnimalPavilon>();
-
-    public static void loadDB(){   //deserialize arraylist
+    private Thread ActiveThread;
+    private static void loadDB(){   //deserialize arraylist
         try {
             FileInputStream fileIn = new FileInputStream("PavilonBackup");
             ObjectInputStream ObjectIn = new ObjectInputStream(fileIn);
@@ -26,7 +26,7 @@ public class PavilonDB {
         }
     }
 
-    public static void fillDB(){   //naplnenie databazy prototypmi ak neexistuje zaloha
+    private static void fillDB(){   //naplnenie databazy prototypmi ak neexistuje zaloha
         pavilons.add(new Paddock(AnimalDB.animals.get(0)));
         pavilons.add(new Terrarium(AnimalDB.animals.get(1)));
         pavilons.add(new Aviary(AnimalDB.animals.get(2)));
@@ -37,7 +37,7 @@ public class PavilonDB {
         pavilons.add(new Terrarium(AnimalDB.animals.get(7)));
     }
 
-    public static void saveDB(){   //serialize arraylist
+    private static void saveDB(){   //serialize arraylist
         if (pavilons != null) {
             try {
                 FileOutputStream fileOut = new FileOutputStream("PavilonBackup");
@@ -48,6 +48,20 @@ public class PavilonDB {
             } catch (IOException ioe) {
                 System.out.println("PavilonData neboli backupnute");
             }
+        }
+    }
+
+    @Override
+    public void run() {
+        if (pavilons == null) loadDB();
+        else saveDB();
+    }
+
+    @Override
+    public synchronized void start() {
+        if (ActiveThread == null){
+            ActiveThread = new Thread(this);
+            ActiveThread.start();
         }
     }
 }
