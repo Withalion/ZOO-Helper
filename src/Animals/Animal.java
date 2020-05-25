@@ -3,6 +3,10 @@ package Animals;
 import Help.Feedable;
 import java.io.Serializable;
 
+/**
+ * Základná trieda pre zviera obsahuje vek, meno, druh žrádla, cenu žrádla a to či je zviera hladné.
+ * Implementuje metódu FeedME.
+ */
 public class Animal implements Feedable, Serializable {
     public String Name;
     private int Age;

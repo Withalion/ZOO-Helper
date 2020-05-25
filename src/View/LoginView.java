@@ -8,7 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import Controllers.LoginController;
-
+/**
+ * <h1>Zoo simulator</h1>
+ * Toto je program pre správu zoologickej záhrady.
+ * @author Matej Bagar
+ */
 public class LoginView extends Application {
     private LoginController loginController = LoginController.getInstance();
     private Label welcome = new Label("Welcome");
@@ -20,6 +24,11 @@ public class LoginView extends Application {
     public Button logoutBT = new Button("Log Out");
     public Pane pane = new Pane();
 
+    /**
+     * Táto metóda vyvolá vytvorenie hlavného okna hneď po spustení programu.
+     * Priradí loginController a načíta alebo vytvorí dáta pre zvieratá, užívateľov a pavilóny.
+     * @param primaryStage
+     */
     public void start(Stage primaryStage) {
         primaryStage.setTitle("ZOO");
 
@@ -83,6 +92,10 @@ public class LoginView extends Application {
         });
     }
 
+    /**
+     * Updatne Login okno po úspešnom prihlásení a zobrazí meno prihláseného.
+     * @param name
+     */
     public void goodLogin(String name){
         Name.setText(name);
         Name.setVisible(true);
@@ -91,10 +104,16 @@ public class LoginView extends Application {
         logoutBT.setVisible(true);
     }
 
+    /**
+     * Ukáže nesprávny login.
+     */
     public void badLogin(){
         wrong.setVisible(true);
     }
 
+    /**
+     * Táto metóda sa zavolá po stlačení tlačidla pre odhlásenie, updatne sa login okno na pôvodný stav.
+     */
     public void logout(){
         welcome.setLayoutX(150);
         welcome.setLayoutY(100);

@@ -1,15 +1,20 @@
 package Help;
 
 import Animals.*;
-import Models.*;
-
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Trieda, ktorá obsahuje databázu zvierat, ktoré momentálne sú v zoo.
+ * Serializácia aj deserializácia sa vždy dejú vo vlastnom vlákne oproti ostatnej logike programu.
+ */
 public class AnimalDB extends Thread{
     public static ArrayList<Animal> animals = new ArrayList<Animal>();
     private Thread ActiveThread;
 
+    /**
+     * Načítanie databázy ak existuje záloha ak nie tak sa vytvoria predpísané zvieratá.
+     */
     private static void loadDB(){   //deserialize arraylist
         try {
             FileInputStream fileIn = new FileInputStream("AnimalBackup");
@@ -38,6 +43,9 @@ public class AnimalDB extends Thread{
         animals.add(new Reptile("Geko", 3, "VEGETABLE", 5));
     }
 
+    /**
+     * Uloženie databázy do súboru s názvom AnimalBackup.
+     */
     private static void saveDB(){   //serialize arraylist
         if (animals != null) {
             try {

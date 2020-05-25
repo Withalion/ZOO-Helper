@@ -6,6 +6,10 @@ public class Pokladnik extends Employee {
         this.setID(uID);
         this.setName(uName);
     }
+
+    /**
+     * Metóda, ktorá vyvolá vytvorenie okna pre pokladníka.
+     */
     public void polyLogin(){
         this.loginController.CashierOV();
     }

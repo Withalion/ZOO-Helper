@@ -10,6 +10,10 @@ public class Amphibian extends NotshowableAnimal {
         this.setMealPrice(aMealPrice);
     }
 
+    /**
+     * Prekonaná metóda rozhrania Feedable.
+     * @return vrati string kde je napisane vsetko o zvierati
+     */
     public String FeedME() {
         this.setHungry(false);
         LoginController.budget += this.getMealPrice();

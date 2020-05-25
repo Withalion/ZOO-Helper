@@ -10,7 +10,9 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
-
+/**
+ * Okno pokladníka, ktoré mu dovoluje vytvárať nových návštevníkov.
+ */
 public class CashierView extends Application{
     private EmployeeController employeeController = EmployeeController.getInstance(this);
     public Pane pane = new Pane();
@@ -36,6 +38,9 @@ public class CashierView extends Application{
         }
     };
 
+    /**
+     * Metóda, ktorá vytvorí okno pre pokladníka.
+     */
     public void sceneBuilder(){
         action.setLayoutX(40);
         action.setLayoutY(50);
@@ -103,6 +108,11 @@ public class CashierView extends Application{
         pane.getChildren().add(BadCreate);
         pane.getChildren().add(Repeat);
     }
+
+    /**
+     * Metóda, ktorá rieši logiku za týmto oknom. Priradenie controllera, reakcia na kliknutie...
+     * @param primaryStage
+     */
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Cashier Overview");
         sceneBuilder();

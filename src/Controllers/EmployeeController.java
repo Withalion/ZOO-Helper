@@ -13,6 +13,9 @@ import View.ManagerView;
 
 import java.util.ArrayList;
 
+/**
+ * Controller pre Zamestnanecké okná sprostredkuje požiadavky používateľa modelom a rieši logiku.
+ */
 public class EmployeeController {
     private static EmployeeController instance = null;
     private AniHandlerView handlerView =null;
@@ -21,15 +24,31 @@ public class EmployeeController {
     private LoginController lgInstance = LoginController.getInstance();
     private Help.VisitorMaker VisitorMaker = new VisitorMaker();
     public ArrayList<User> StaffDB = new ArrayList<>();
+
+    /**
+     * Priradí okno ošetrovateľa ku controlleru.
+     * @param view otvorené okno
+     */
     private EmployeeController(AniHandlerView view){
         this.handlerView = view;
     }
+
+    /**
+     * Priradí okno manažera ku controlleru.
+     * @param view otvorené okno
+     */
     private EmployeeController(ManagerView view){
         this.managerView = view;
     }
+
+    /**
+     * Priradí okno pokladníka ku controlleru.
+     * @param view otvorené okno
+     */
     private EmployeeController(CashierView view){
         this.cashierView = view;
     }
+
     public static EmployeeController getInstance(AniHandlerView view){
         if (instance == null)instance = new EmployeeController(view);
         return instance;
@@ -54,10 +73,19 @@ public class EmployeeController {
     public void PairEController(CashierView eView){
         this.cashierView = eView;
     }
+
+    /**
+     * Metóda ktorá rieši vstup do pavilónu.
+     * @param entrySpace pavilón do ktorého chce vstúpiť
+     */
     public void TryEnter(AnimalPavilon entrySpace){
         if (lgInstance.pickedUser.TryEnter(entrySpace)) handlerView.openDoor();
         else handlerView.lockDoor();
     }
+
+    /**
+     * Metóda, ktorá vyvolá metódu o ošetrovateľa na krmenie zvierat a následne uloží databázu zvierat.
+     */
     public void FeedAnimals(){
         this.FeedUpdate(lgInstance.pickedUser.FeedME());
         AnimalDB ActiveAnimalDB = new AnimalDB();
@@ -66,6 +94,10 @@ public class EmployeeController {
     public void FeedUpdate(String text){
         handlerView.FeedStatus.appendText(text);
     }
+
+    /**
+     * Metóda, ktorá vytvorí Arraylist zamestnancov z používateľov.
+     */
     public void CreateStaffDB(){
        for (User user:UserDB.users){
            if (user instanceof Employee){
@@ -73,6 +105,11 @@ public class EmployeeController {
            }
        }
     }
+
+    /**
+     * Metóda, ktorá ukáže aktuálne údaje zamestnanca + pri ošetrovateľoch aj pridelené zvieratá.
+     * @param staff vybraný zamestnanec
+     */
     public void updateDetails(User staff){
        // managerView.salaryTXT.setText(staff.getSalary().toString());      WIP
         managerView.idTXT.setText(staff.getID().toString());
@@ -93,6 +130,11 @@ public class EmployeeController {
             managerView.animalChoice.setVisible(false);
         }
     }
+
+    /**
+     * Uloženie údajov zamestnancov po zmene.
+     * @param staff vybraný zamestnanec
+     */
     public void saveDATA(User staff){
         staff.setID(Integer.valueOf(managerView.idTXT.getText()));
         staff.setName(managerView.nameTXT.getText());
@@ -100,6 +142,12 @@ public class EmployeeController {
         UserDB ActiveUserDB = new UserDB();
         ActiveUserDB.start();
     }
+
+    /**
+     * Metóda, ktorá priraďuje zvieratá zamestnancov podľa toho čo zvolil používateľ.
+     * @param pickedAnimal vybrané zviera
+     * @param pickedCare zvolený ošetrovateľ
+     */
     public void AddAnimal(Animal pickedAnimal, User pickedCare){
         for (Animal animal:((Zookeeper)pickedCare).animals){      //neriesi specializaciu osetrovatelov
             if (animal.equals(pickedAnimal)){
@@ -113,6 +161,14 @@ public class EmployeeController {
         managerView.goodANI.setVisible(true);
         this.updateDetails(pickedCare);
     }
+
+    /**
+     * Metóda, ktorá vytvorí nového návštevníka na základe požiadavky pokladníka, pomocou strategy.
+     * @param VisitorType typ návštevníka
+     * @param Name meno návštevníka
+     * @exception NameException vyhodí exception ak meno obsahuje číslice alebo nebolo zadané
+     * @see NameException
+     */
     public void sellTicket(String VisitorType, String Name){
         try {
             if (Name.equals("")) throw new NameException("Enter visitor's name!");

@@ -1,8 +1,5 @@
 package Help;
 
-import Controllers.LoginController;
-import Help.Strategy;
-import Help.UserDB;
 import Models.User;
 
 public class VisitorMaker {

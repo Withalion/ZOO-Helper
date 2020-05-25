@@ -1,14 +1,20 @@
 package Help;
 
 import AnimalPavilons.*;
-import Animals.*;
-
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Trieda, ktorá obsahuje databázu pavilónov, ktoré momentálne sú v zoo.
+ * Serializácia aj deserializácia sa vždy dejú vo vlastnom vlákne oproti ostatnej logike programu.
+ */
 public class PavilonDB extends Thread{
     public static ArrayList<AnimalPavilon> pavilons = new ArrayList<AnimalPavilon>();
     private Thread ActiveThread;
+
+    /**
+     * Načítanie databázy ak existuje záloha ak nie tak sa vytvoria predpísané pavilóny.
+     */
     private static void loadDB(){   //deserialize arraylist
         try {
             FileInputStream fileIn = new FileInputStream("PavilonBackup");
@@ -37,6 +43,9 @@ public class PavilonDB extends Thread{
         pavilons.add(new Terrarium(AnimalDB.animals.get(7)));
     }
 
+    /**
+     * Uloženie databázy do súboru s názvom PavilonBackup.
+     */
     private static void saveDB(){   //serialize arraylist
         if (pavilons != null) {
             try {

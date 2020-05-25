@@ -16,7 +16,9 @@ import javafx.scene.layout.Pane;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-
+/**
+ * Táto trieda predstavuje okno návštevníka s ktorým komunikuje.
+ */
 public class VisitorView extends Application {
     private VisitorController visitorController = VisitorController.getInstance();
     public Pane pane = new Pane();
@@ -34,6 +36,10 @@ public class VisitorView extends Application {
             pavilonChoice.setVisible(true);
         }
     };
+
+    /**
+     * Metóda, ktorá vytvorí okno pre návštevníka.
+     */
     public void sceneBuilder(){
         EntryButton.setLayoutX(175);
         EntryButton.setLayoutY(350);
@@ -81,6 +87,11 @@ public class VisitorView extends Application {
         pane.getChildren().add(pavilon);
         pane.getChildren().add(pavilonChoice);
     }
+
+    /**
+     * Metóda, ktorá rieši logiku za týmto oknom. Priradenie controllera, reakcia na kliknutie...
+     * @param primaryStage
+     */
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Visitor Overview");
         sceneBuilder();

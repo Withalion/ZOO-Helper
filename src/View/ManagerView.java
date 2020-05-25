@@ -16,6 +16,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 
+/**
+ * Okno manažéra, ktoré mu dovoluje menežovať zamestnancov.
+ */
 public class ManagerView extends Application{
     private EmployeeController employeeController = EmployeeController.getInstance(this);
     public Pane pane = new Pane();
@@ -48,6 +51,10 @@ public class ManagerView extends Application{
             salaryTXT.setVisible(true);
             save.setVisible(true);
     };
+
+    /**
+     * Metóda, ktorá vytvorí okno pre ošetrovateľa.
+     */
     public void sceneBuilder(){
         action.setLayoutX(40);
         action.setLayoutY(50);
@@ -152,6 +159,11 @@ public class ManagerView extends Application{
         pane.getChildren().add(goodANI);
         pane.getChildren().add(wrongANI);
     }
+
+    /**
+     * Metóda, ktorá rieši logiku za týmto oknom. Priradenie controllera, reakcia na kliknutie...
+     * @param primaryStage
+     */
     public void start(Stage primaryStage) {
         employeeController.CreateStaffDB();
         primaryStage.setTitle("Manager Overview");

@@ -4,9 +4,12 @@ import AnimalPavilons.AnimalPavilon;
 import Animals.Animal;
 import Controllers.EmployeeController;
 import Help.Showable;
-
 import java.util.ArrayList;
 
+/**
+ * Trieda ošetrovateľov obsahuje špecializáciu, ktorá nakoniec nebola využitá.
+ * Zároveň metódu kŕmenia a vstupovania do pavilónov + gettery a settery kvôli špecializácii.
+ */
 public class Zookeeper extends Employee implements Showable {
     public ArrayList<Animal> animals = new ArrayList<>();
     private boolean Amphibian;
@@ -30,10 +33,19 @@ public class Zookeeper extends Employee implements Showable {
         this.setPrimate(oPrimate);
         this.setReptile(oReptile);
     }
+
+    /**
+     * Metóda otvorí okno pre ošetrovateľov.
+     */
     public void polyLogin(){
         this.loginController.HandlerOV();
     }
 
+    /**
+     * Metóda zisťuje či pavilon existuje, či je prázdny, či sa ošetrovateľ stará o nejaké zviera vnútri.
+     * @param entrySpace pavilon kam chce vstúpiť
+     * @return true/false
+     */
     @Override
     public boolean TryEnter(AnimalPavilon entrySpace) {
         if (entrySpace == null ) return false;
@@ -46,6 +58,11 @@ public class Zookeeper extends Employee implements Showable {
         return false;
     }
 
+    /**
+     * Metóda, ktorá nakŕmi všetky hladné zvieratá o ktoré sa stará.
+     * Zisťuje najprv či sa o nejaké stará.
+     * @return string statement
+     */
     @Override
     public String FeedME() {
         EmployeeController instance = EmployeeController.getInstance();

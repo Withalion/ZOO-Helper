@@ -4,9 +4,11 @@ import AnimalPavilons.AnimalPavilon;
 import Controllers.LoginController;
 import Help.Entry;
 import Help.Feedable;
-
 import java.io.Serializable;
 
+/**
+ * Základná trieda pre všetkých používateľov.
+ */
 public class User implements Serializable, Entry, Feedable {
     private Integer ID;
     private String Name;

@@ -3,6 +3,9 @@ package Models;
 import Help.Strategy;
 import Help.UserDB;
 
+/**
+ * Trieda pre dospelého návštevníka, vytvára sa pomocou VisitorMakera.
+ */
 public class Adult extends Visitor implements Strategy {
 
     public Adult(Integer uID, String uName){
@@ -14,6 +17,11 @@ public class Adult extends Visitor implements Strategy {
 
     }
 
+    /**
+     * Metóda, ktorá vytvorenému objektu priradí všetky údaje.
+     * ID je náhodne generované a zároveň nemôže byť použité.
+     * @param Name meno návštevníka
+     */
     public void WriteUserDetails(String Name){
         int NewID = 0;
         System.out.print(this.getClass()+"\n");

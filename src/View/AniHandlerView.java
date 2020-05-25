@@ -14,6 +14,9 @@ import javafx.scene.layout.Pane;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+/**
+ * Okno ošetrovateľa, ktoré mu dovoluje vstúpiť do pavilónov alebo kŕmiť zvieratá.
+ */
 public class AniHandlerView extends Application{
     private EmployeeController employeeController = EmployeeController.getInstance(this);
     public Pane pane = new Pane();
@@ -45,6 +48,10 @@ public class AniHandlerView extends Application{
             doorClosed.setVisible(false);
         }
     };
+
+    /**
+     * Metóda, ktorá vytvorí okno pre ošetrovateľa.
+     */
     public void sceneBuilder(){
         EntryButton.setLayoutX(175);
         EntryButton.setLayoutY(350);
@@ -106,6 +113,11 @@ public class AniHandlerView extends Application{
         pane.getChildren().add(FeedButton);
         pane.getChildren().add(FeedStatus);
     }
+
+    /**
+     * Metóda, ktorá rieši logiku za týmto oknom. Priradenie controllera, reakcia na kliknutie...
+     * @param primaryStage
+     */
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Animal Handler Overview");
         sceneBuilder();

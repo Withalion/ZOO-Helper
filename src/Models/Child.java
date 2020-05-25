@@ -3,6 +3,9 @@ package Models;
 import Help.Strategy;
 import Help.UserDB;
 
+/**
+ * Trieda pre detského návštevníka, vytvára sa pomocou VisitorMakera.
+ */
 public class Child extends Visitor implements Strategy {
     public Child(Integer uID, String uName){
         this.setID(uID);
@@ -13,6 +16,11 @@ public class Child extends Visitor implements Strategy {
 
     }
 
+    /**
+     * Metóda, ktorá vytvorenému objektu priradí všetky údaje.
+     * ID je náhodne generované a zároveň nemôže byť použité.
+     * @param Name meno návštevníka
+     */
     public void WriteUserDetails(String Name){
         System.out.print(this.getClass()+"\n");
         int NewID = 0;

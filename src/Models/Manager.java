@@ -6,6 +6,10 @@ public class Manager extends Employee {
         this.setID(uID);
         this.setName(uName);
     }
+
+    /**
+     * Metóda, ktorá vyvolá vytvorenie okna pre manažéra.
+     */
     public void polyLogin(){
         this.loginController.ManagerOV();
     }
