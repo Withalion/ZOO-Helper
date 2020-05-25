@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  * Trieda ošetrovateľov obsahuje špecializáciu, ktorá nakoniec nebola využitá.
- * Zároveň metódu kŕmenia a vstupovania do pavilónov + gettery a settery kvôli špecializácii.
+ * Zároven metódu kŕmenia a vstupovania do pavilónov + gettery a settery kvôli špecializácii.
  */
 public class Zookeeper extends Employee implements Showable {
     public ArrayList<Animal> animals = new ArrayList<>();

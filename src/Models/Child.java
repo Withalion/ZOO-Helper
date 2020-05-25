@@ -18,7 +18,7 @@ public class Child extends Visitor implements Strategy {
 
     /**
      * Metóda, ktorá vytvorenému objektu priradí všetky údaje.
-     * ID je náhodne generované a zároveň nemôže byť použité.
+     * ID je náhodne generované a zároven nemôže byť použité.
      * @param Name meno návštevníka
      */
     public void WriteUserDetails(String Name){

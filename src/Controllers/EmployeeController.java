@@ -166,7 +166,6 @@ public class EmployeeController {
      * Metóda, ktorá vytvorí nového návštevníka na základe požiadavky pokladníka, pomocou strategy.
      * @param VisitorType typ návštevníka
      * @param Name meno návštevníka
-     * @exception NameException vyhodí exception ak meno obsahuje číslice alebo nebolo zadané
      * @see NameException
      */
     public void sellTicket(String VisitorType, String Name){
