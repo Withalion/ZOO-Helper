@@ -1,6 +1,6 @@
 package View;
 
-import Controllers.ZamestnanecController;
+import Controllers.EmployeeController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,7 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 
 public class CashierView extends Application{
-    private ZamestnanecController employeeController = ZamestnanecController.getInstance(this);
+    private EmployeeController employeeController = EmployeeController.getInstance(this);
     public Pane pane = new Pane();
     public Label action = new Label("Action to do: ");
     public ComboBox<String> actionChoice= new ComboBox<>();

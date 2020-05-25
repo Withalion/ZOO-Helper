@@ -1,6 +1,6 @@
 package Models;
 
-public class Pokladnik extends Zamestnanec {
+public class Pokladnik extends Employee {
 
     public Pokladnik (Integer uID, String uName){
         this.setID(uID);

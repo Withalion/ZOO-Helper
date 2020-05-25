@@ -1,7 +1,7 @@
 package View;
 
 import Animals.Animal;
-import Controllers.ZamestnanecController;
+import Controllers.EmployeeController;
 import Help.AnimalDB;
 import Models.User;
 import javafx.application.Application;
@@ -17,7 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 
 public class ManagerView extends Application{
-    private ZamestnanecController employeeController = ZamestnanecController.getInstance(this);
+    private EmployeeController employeeController = EmployeeController.getInstance(this);
     public Pane pane = new Pane();
     public Label action = new Label("Action to do: ");
     public ComboBox<String> actionChoice= new ComboBox<>();

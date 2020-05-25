@@ -1,11 +1,11 @@
 package Models;
 
 import AnimalPavilons.*;
-import Controllers.NavstevnikController;
+import Controllers.VisitorController;
 
-public class Navstevnik extends User{
+public class Visitor extends User{
     int MoneySpent;
-    private transient NavstevnikController NCinstance = NavstevnikController.getInstance();
+    private transient VisitorController NCinstance = VisitorController.getInstance();
     public void polyLogin(){
         this.loginController.VisitorOV();
     }

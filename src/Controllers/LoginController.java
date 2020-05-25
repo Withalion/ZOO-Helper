@@ -1,6 +1,6 @@
 package Controllers;
 
-import View.NavstevnikView;
+import View.VisitorView;
 import View.*;
 import Models.User;
 import Help.*;
@@ -51,7 +51,7 @@ public class LoginController {
     }
     public User getPickedUser(){return this.pickedUser;}
     public void VisitorOV(){
-        new NavstevnikView().start(new Stage());
+        new VisitorView().start(new Stage());
     }
     public void HandlerOV(){
         new AniHandlerView().start(new Stage());

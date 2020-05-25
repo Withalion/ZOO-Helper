@@ -3,19 +3,20 @@ package Models;
 import Help.Strategy;
 import Help.UserDB;
 
-public class Dieta extends Navstevnik implements Strategy {
-    public Dieta (Integer uID, String uName){
+public class Adult extends Visitor implements Strategy {
+
+    public Adult(Integer uID, String uName){
         this.setID(uID);
         this.setName(uName);
     }
 
-    public Dieta() {
+    public Adult() {
 
     }
 
     public void WriteUserDetails(String Name){
-        System.out.print(this.getClass()+"\n");
         int NewID = 0;
+        System.out.print(this.getClass()+"\n");
         this.setName(Name);
         System.out.print(this.getName()+"\n");
         int success = 0;

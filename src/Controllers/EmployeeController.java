@@ -13,36 +13,36 @@ import View.ManagerView;
 
 import java.util.ArrayList;
 
-public class ZamestnanecController {
-    private static Controllers.ZamestnanecController instance = null;
+public class EmployeeController {
+    private static EmployeeController instance = null;
     private AniHandlerView handlerView =null;
     private ManagerView managerView =null;
     private CashierView cashierView =null;
     private LoginController lgInstance = LoginController.getInstance();
     private Help.VisitorMaker VisitorMaker = new VisitorMaker();
     public ArrayList<User> StaffDB = new ArrayList<>();
-    private ZamestnanecController(AniHandlerView view){
+    private EmployeeController(AniHandlerView view){
         this.handlerView = view;
     }
-    private ZamestnanecController(ManagerView view){
+    private EmployeeController(ManagerView view){
         this.managerView = view;
     }
-    private ZamestnanecController(CashierView view){
+    private EmployeeController(CashierView view){
         this.cashierView = view;
     }
-    public static Controllers.ZamestnanecController getInstance(AniHandlerView view){
-        if (instance == null)instance = new Controllers.ZamestnanecController(view);
+    public static EmployeeController getInstance(AniHandlerView view){
+        if (instance == null)instance = new EmployeeController(view);
         return instance;
     }
-    public static Controllers.ZamestnanecController getInstance(ManagerView view){
-        if (instance == null)instance = new Controllers.ZamestnanecController(view);
+    public static EmployeeController getInstance(ManagerView view){
+        if (instance == null)instance = new EmployeeController(view);
         return instance;
     }
-    public static Controllers.ZamestnanecController getInstance(CashierView view){
-        if (instance == null)instance = new Controllers.ZamestnanecController(view);
+    public static EmployeeController getInstance(CashierView view){
+        if (instance == null)instance = new EmployeeController(view);
         return instance;
     }
-    public static Controllers.ZamestnanecController getInstance(){
+    public static EmployeeController getInstance(){
         return instance;
     }
     public void PairEController(AniHandlerView eView){
@@ -68,7 +68,7 @@ public class ZamestnanecController {
     }
     public void CreateStaffDB(){
        for (User user:UserDB.users){
-           if (user instanceof Zamestnanec){
+           if (user instanceof Employee){
                StaffDB.add(user);
            }
        }
@@ -77,11 +77,11 @@ public class ZamestnanecController {
        // managerView.salaryTXT.setText(staff.getSalary().toString());      WIP
         managerView.idTXT.setText(staff.getID().toString());
         managerView.nameTXT.setText(staff.getName());
-        if (staff instanceof Osetrovatel){
+        if (staff instanceof Zookeeper){
             managerView.Animals.setVisible(true);
             managerView.Animals.clear();
             managerView.Animals.appendText("Taking care of: \n");
-            for (Animal animal:((Osetrovatel) staff).animals){
+            for (Animal animal:((Zookeeper) staff).animals){
                 managerView.Animals.appendText("Name: "+animal.Name+"\nType of animal: "+animal.getClass().getSimpleName()+"\n");
             }
             managerView.animalADD.setVisible(true);
@@ -101,14 +101,14 @@ public class ZamestnanecController {
         ActiveUserDB.start();
     }
     public void AddAnimal(Animal pickedAnimal, User pickedCare){
-        for (Animal animal:((Osetrovatel)pickedCare).animals){      //neriesi specializaciu osetrovatelov
+        for (Animal animal:((Zookeeper)pickedCare).animals){      //neriesi specializaciu osetrovatelov
             if (animal.equals(pickedAnimal)){
                 managerView.goodANI.setVisible(false);
                 managerView.wrongANI.setVisible(true);
                 return;
             }
         }
-        ((Osetrovatel) pickedCare).animals.add(pickedAnimal);
+        ((Zookeeper) pickedCare).animals.add(pickedAnimal);
         managerView.wrongANI.setVisible(false);
         managerView.goodANI.setVisible(true);
         this.updateDetails(pickedCare);
@@ -121,10 +121,10 @@ public class ZamestnanecController {
             }
             switch (VisitorType) {
                 case "Child":
-                    VisitorMaker.SetStrategy(new Dieta());
+                    VisitorMaker.SetStrategy(new Child());
                     break;
                 case "Adult":
-                    VisitorMaker.SetStrategy(new Dospeli());
+                    VisitorMaker.SetStrategy(new Adult());
                     break;
                 case "Senior":
                     VisitorMaker.SetStrategy(new Senior());

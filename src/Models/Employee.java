@@ -1,5 +1,5 @@
 package Models;
 
-public class Zamestnanec extends User {
+public class Employee extends User {
         private int salary;
 }

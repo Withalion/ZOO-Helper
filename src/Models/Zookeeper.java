@@ -2,13 +2,13 @@ package Models;
 
 import AnimalPavilons.AnimalPavilon;
 import Animals.Animal;
-import Controllers.ZamestnanecController;
+import Controllers.EmployeeController;
 import Help.Showable;
 
 import java.util.ArrayList;
 
-public class Osetrovatel extends Zamestnanec implements Showable {
-    private transient ZamestnanecController instance = ZamestnanecController.getInstance();
+public class Zookeeper extends Employee implements Showable {
+    private transient EmployeeController instance = EmployeeController.getInstance();
     public ArrayList<Animal> animals = new ArrayList<>();
     private boolean Amphibian;
     private boolean Bird;
@@ -19,7 +19,7 @@ public class Osetrovatel extends Zamestnanec implements Showable {
     private boolean Primate;
     private boolean Reptile;
 
-    public Osetrovatel (int uID, String uName, boolean oAmphibian, boolean oBird, boolean oCat, boolean oFish, boolean oInvertebrate, boolean oMammal, boolean oPrimate, boolean oReptile){
+    public Zookeeper(int uID, String uName, boolean oAmphibian, boolean oBird, boolean oCat, boolean oFish, boolean oInvertebrate, boolean oMammal, boolean oPrimate, boolean oReptile){
         this.setID(uID);
         this.setName(uName);
         this.setAmphibian(oAmphibian);
@@ -49,7 +49,7 @@ public class Osetrovatel extends Zamestnanec implements Showable {
 
     @Override
     public String FeedME() {
-        instance = ZamestnanecController.getInstance();
+        instance = EmployeeController.getInstance();
         if (animals.isEmpty()) return "No animals to feed!\n";
         for (Animal animal : animals) {
             if (animal.isHungry()) instance.FeedUpdate(animal.FeedME());

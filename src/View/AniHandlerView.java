@@ -1,7 +1,7 @@
 package View;
 
 import AnimalPavilons.AnimalPavilon;
-import Controllers.ZamestnanecController;
+import Controllers.EmployeeController;
 import Help.PavilonDB;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -15,7 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 public class AniHandlerView extends Application{
-    private ZamestnanecController employeeController = ZamestnanecController.getInstance(this);
+    private EmployeeController employeeController = EmployeeController.getInstance(this);
     public Pane pane = new Pane();
     public Button EntryButton = new Button("Enter");
     public Label doorOpen = new Label("Access granted");

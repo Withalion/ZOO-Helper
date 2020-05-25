@@ -1,8 +1,8 @@
 package Models;
 
-public class Manazer extends Zamestnanec {
+public class Manager extends Employee {
 
-    public Manazer (Integer uID, String uName){
+    public Manager(Integer uID, String uName){
         this.setID(uID);
         this.setName(uName);
     }

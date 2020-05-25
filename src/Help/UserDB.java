@@ -24,12 +24,12 @@ public class UserDB extends Thread{
     }
 
     private void fillDB () {   //naplnenie databazy prototypmi ak neexistuje zaloha
-        users.add(new Dieta(10001, "Janko"));
-        users.add(new Dospeli(10002, "Marian"));
+        users.add(new Child(10001, "Janko"));
+        users.add(new Adult(10002, "Marian"));
         users.add(new Senior(10003, "Imrich"));
         users.add(new Pokladnik(50001, "Marienka"));
-        users.add(new Manazer(90001, "Alfonz"));
-        users.add(new Osetrovatel(50002, "Edo", false, true, false, true, false, true, false, false));
+        users.add(new Manager(90001, "Alfonz"));
+        users.add(new Zookeeper(50002, "Edo", false, true, false, true, false, true, false, false));
     }
 
     private void saveDB () {   //serialize arraylist

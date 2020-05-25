@@ -152,7 +152,7 @@ boolean oFish, boolean oInvertebrate, boolean oMammal, boolean oPrimate, boolean
     </coordinates>
     <panel_attributes>Controllers::ZamestnanecController
 --
--instance = null: Controllers.ZamestnanecController
+-instance = null: Controllers.EmployeeController
 -handlerView = null: AniHandlerView
 -managerView = null: ManagerView
 -cashierView = null: CashierView
@@ -163,10 +163,10 @@ boolean oFish, boolean oInvertebrate, boolean oMammal, boolean oPrimate, boolean
 -ZamestnanecController(AniHandlerView view): ctor
 -ZamestnanecController(ManagerView view): ctor
 -ZamestnanecController(CashierView view): ctor
-+getInstance(AniHandlerView view): Controllers.ZamestnanecController
-+getInstance(ManagerView view): Controllers.ZamestnanecController
-+getInstance(CashierView view): Controllers.ZamestnanecController
-+getInstance(): Controllers.ZamestnanecController
++getInstance(AniHandlerView view): Controllers.EmployeeController
++getInstance(ManagerView view): Controllers.EmployeeController
++getInstance(CashierView view): Controllers.EmployeeController
++getInstance(): Controllers.EmployeeController
 +PairEController(AniHandlerView eView): void
 +PairEController(ManagerView eView): void
 +PairEController(CashierView eView): void

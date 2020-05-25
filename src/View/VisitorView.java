@@ -1,7 +1,7 @@
 package View;
 
 import AnimalPavilons.AnimalPavilon;
-import Controllers.NavstevnikController;
+import Controllers.VisitorController;
 import Help.PavilonDB;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -17,8 +17,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 
-public class NavstevnikView extends Application {
-    private NavstevnikController visitorController = NavstevnikController.getInstance();
+public class VisitorView extends Application {
+    private VisitorController visitorController = VisitorController.getInstance();
     public Pane pane = new Pane();
     public Button EntryButton = new Button("Enter");
     public Label doorOpen = new Label("Access granted");
