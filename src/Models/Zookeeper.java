@@ -8,7 +8,6 @@ import Help.Showable;
 import java.util.ArrayList;
 
 public class Zookeeper extends Employee implements Showable {
-    private transient EmployeeController instance = EmployeeController.getInstance();
     public ArrayList<Animal> animals = new ArrayList<>();
     private boolean Amphibian;
     private boolean Bird;
@@ -49,7 +48,7 @@ public class Zookeeper extends Employee implements Showable {
 
     @Override
     public String FeedME() {
-        instance = EmployeeController.getInstance();
+        EmployeeController instance = EmployeeController.getInstance();
         if (animals.isEmpty()) return "No animals to feed!\n";
         for (Animal animal : animals) {
             if (animal.isHungry()) instance.FeedUpdate(animal.FeedME());
